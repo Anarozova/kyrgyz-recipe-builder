@@ -9,169 +9,148 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#F5F3EE;--surface:#FFF;--surface2:#F0EDE6;--surface3:#E8E4DB;
-  --border:#E0DBD1;--border2:#D0CABD;
-  --green:#2D6A4F;--green2:#40916C;--green-light:#D8EDDF;--green-mid:#52B788;
-  --amber:#B5451B;--amber2:#D4622A;--amber-light:#FDEBD5;
-  --red:#C0392B;--red-light:#FDECEC;
-  --blue:#1A56A0;--blue-light:#E8F0FB;
-  --gold:#C49A1A;--gold-light:#FDF6DC;
+  --border:#E0DBD1;--green:#2D6A4F;--green2:#40916C;--green-light:#D8EDDF;--green-mid:#52B788;
+  --amber:#B5451B;--amber-light:#FDEBD5;--red:#C0392B;--red-light:#FDECEC;
+  --blue:#1A56A0;--blue-light:#E8F0FB;--purple:#6B3FA0;--purple-light:#EDE8F8;
   --text:#1A1A18;--text2:#5A5750;--text3:#9A9590;--text4:#C8C3BB;
   --radius:10px;--radius-lg:16px;--radius-xl:20px;
-  --shadow:0 2px 12px rgba(0,0,0,.07);
-  --shadow-lg:0 8px 32px rgba(0,0,0,.12);
+  --shadow:0 2px 12px rgba(0,0,0,.07);--shadow-lg:0 8px 32px rgba(0,0,0,.12);
 }
 html{font-size:16px;scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-height:1.6;min-height:100vh}
 
-/* ══ OVERLAYS ══ */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:900;display:flex;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(3px)}
 .overlay.hidden{display:none}
 .modal{background:var(--surface);border-radius:var(--radius-xl);width:100%;overflow:hidden;box-shadow:var(--shadow-lg)}
-
-/* API KEY modal */
 .api-modal{max-width:540px;max-height:90vh;overflow-y:auto}
 .modal-hdr{padding:1.5rem 1.75rem 1.25rem;color:#fff}
-.modal-hdr.green{background:linear-gradient(135deg,var(--green),var(--green2))}
+.modal-hdr.purple{background:linear-gradient(135deg,#4A1D96,#7C3AED)}
 .modal-hdr h2{font-family:"Playfair Display",serif;font-size:21px;font-weight:700;margin-bottom:.25rem}
 .modal-hdr p{font-size:13px;opacity:.82}
 .modal-body{padding:1.5rem 1.75rem}
+.free-badge{display:inline-block;background:#DCFCE7;color:#166534;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:1rem}
 .step-row{display:flex;gap:.875rem;margin-bottom:1rem;align-items:flex-start}
-.step-num{width:26px;height:26px;border-radius:50%;background:var(--green-light);color:var(--green);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--purple-light);color:var(--purple);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .step-body strong{font-size:13px;font-weight:600;display:block;margin-bottom:2px}
 .step-body span{font-size:12px;color:var(--text2);line-height:1.55}
-.step-body a{color:var(--green);text-decoration:none;font-weight:500}
-.step-body code{background:var(--surface2);padding:2px 7px;border-radius:4px;font-size:11px;font-family:monospace;color:var(--text2)}
-.key-input-row{display:flex;gap:8px;margin-top:1rem}
-.key-inp{flex:1;font-family:Inter,sans-serif;font-size:13px;padding:9px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);outline:none;transition:border-color .15s}
-.key-inp:focus{border-color:var(--green-mid)}
-.key-btn{font-size:13px;font-family:Inter,sans-serif;font-weight:600;padding:9px 18px;border-radius:8px;border:none;background:var(--green);color:#fff;cursor:pointer;white-space:nowrap;transition:background .15s}
-.key-btn:hover{background:#1B4D38}
+.step-body a{color:var(--purple);text-decoration:none;font-weight:600}
+.step-body a:hover{text-decoration:underline}
+.step-body code{background:var(--surface2);padding:2px 7px;border-radius:4px;font-size:11px;font-family:monospace}
+.key-row{display:flex;gap:8px;margin-top:1rem}
+.key-inp{flex:1;font-family:Inter,sans-serif;font-size:13px;padding:9px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);outline:none}
+.key-inp:focus{border-color:#7C3AED}
+.key-btn{font-size:13px;font-family:Inter,sans-serif;font-weight:600;padding:9px 18px;border-radius:8px;border:none;background:#7C3AED;color:#fff;cursor:pointer;white-space:nowrap}
+.key-btn:hover{background:#4A1D96}
 .modal-note{font-size:11px;color:var(--text3);margin-top:.625rem;line-height:1.6}
 .modal-skip{font-size:12px;color:var(--text3);text-align:center;margin-top:1rem;cursor:pointer;text-decoration:underline}
-.modal-skip:hover{color:var(--text2)}
 
-/* ADMIN modal */
+/* ADMIN */
 .admin-modal{max-width:820px;max-height:92vh;display:flex;flex-direction:column}
 .admin-hdr{background:#1A1A18;color:#fff;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.admin-hdr h2{font-size:15px;font-weight:600;letter-spacing:.01em}
-.admin-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:22px;cursor:pointer;line-height:1;padding:0 4px;transition:color .15s}
+.admin-hdr h2{font-size:15px;font-weight:600}
+.admin-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:22px;cursor:pointer;line-height:1;padding:0 4px}
 .admin-close:hover{color:#fff}
 .admin-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--surface);overflow-x:auto}
-.admin-tab{font-size:12px;font-family:Inter,sans-serif;font-weight:500;padding:.75rem 1.25rem;border:none;background:transparent;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
-.admin-tab:hover{color:var(--text2)}
+.admin-tab{font-size:12px;font-family:Inter,sans-serif;font-weight:500;padding:.75rem 1.25rem;border:none;background:transparent;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
 .admin-tab.active{color:var(--green);border-bottom-color:var(--green);font-weight:600}
 .admin-content{flex:1;overflow-y:auto;padding:1.25rem 1.5rem;background:var(--bg)}
 .admin-sec{display:none}.admin-sec.active{display:block}
-
-/* stats */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:1.5rem}
-.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.125rem;box-shadow:var(--shadow)}
-.stat-val{font-size:26px;font-weight:700;color:var(--text);line-height:1.1}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow)}
+.stat-val{font-size:26px;font-weight:700;color:var(--text)}
 .stat-lbl{font-size:10px;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
 .stat-sub{font-size:11px;color:var(--green);margin-top:3px;font-weight:500}
 .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
 .chart-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem}
-.chart-title{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--text3);margin-bottom:.75rem}
+.chart-title{font-size:11px;font-weight:600;text-transform:uppercase;color:var(--text3);margin-bottom:.75rem;letter-spacing:.05em}
 .bar-chart{display:flex;flex-direction:column;gap:6px}
 .bar-row{display:flex;align-items:center;gap:8px;font-size:11px}
-.bar-lbl{color:var(--text2);width:60px;flex-shrink:0;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.bar-lbl{color:var(--text2);width:60px;flex-shrink:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .bar-track{flex:1;height:6px;background:var(--surface2);border-radius:3px;overflow:hidden}
-.bar-fill{height:100%;border-radius:3px;background:var(--green-mid);transition:width .5s ease}
-.bar-val{color:var(--text3);width:24px;text-align:right;flex-shrink:0}
-.activity-list{display:flex;flex-direction:column;gap:5px}
+.bar-fill{height:100%;border-radius:3px;background:var(--green-mid)}
+.bar-val{color:var(--text3);width:24px;text-align:right}
+.act-list{display:flex;flex-direction:column;gap:5px}
 .act-item{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:7px 12px;font-size:12px;color:var(--text2);display:flex;align-items:center;justify-content:space-between}
 .act-time{font-size:10px;color:var(--text3)}
-.act-badge{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:500}
-.act-badge.recipe{background:var(--green-light);color:var(--green)}
-.act-badge.visit{background:var(--blue-light);color:var(--blue)}
-
-/* admin products/cats/goals */
-.save-bar{background:var(--gold-light);border:1px solid #e8d07a;border-radius:8px;padding:.625rem 1rem;font-size:12px;color:#7a6010;display:none;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:8px}
+.save-bar{background:#FDF6DC;border:1px solid #e8d07a;border-radius:8px;padding:.625rem 1rem;font-size:12px;color:#7a6010;display:none;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:8px}
 .save-bar.show{display:flex}
-.save-bar-btn{font-size:12px;font-family:Inter,sans-serif;font-weight:600;padding:5px 14px;border-radius:6px;border:none;background:var(--gold);color:#fff;cursor:pointer}
+.save-bar-btn{font-size:12px;font-family:Inter,sans-serif;font-weight:600;padding:5px 14px;border-radius:6px;border:none;background:#C49A1A;color:#fff;cursor:pointer}
 .adm-cat-row{display:flex;gap:5px;margin-bottom:1rem;flex-wrap:wrap}
-.adm-cat-btn{font-size:11px;font-family:Inter,sans-serif;padding:3px 10px;border-radius:15px;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
-.adm-cat-btn:hover{border-color:var(--green-mid);color:var(--green)}
+.adm-cat-btn{font-size:11px;font-family:Inter,sans-serif;padding:3px 10px;border-radius:15px;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer}
 .adm-cat-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
 .prod-table{width:100%;border-collapse:collapse;font-size:12px;background:var(--surface);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
-.prod-table th{text-align:left;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);padding:8px 10px;background:var(--surface2);border-bottom:1px solid var(--border)}
+.prod-table th{text-align:left;font-size:10px;font-weight:600;text-transform:uppercase;color:var(--text3);padding:8px 10px;background:var(--surface2);border-bottom:1px solid var(--border);letter-spacing:.06em}
 .prod-table td{padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:middle}
 .prod-table tr:last-child td{border:none}
 .prod-table tr:hover td{background:var(--surface2)}
-.t-inp{width:100%;font-family:Inter,sans-serif;font-size:12px;padding:3px 6px;border:1px solid transparent;border-radius:4px;background:transparent;color:var(--text);outline:none;transition:all .15s}
+.t-inp{width:100%;font-family:Inter,sans-serif;font-size:12px;padding:3px 6px;border:1px solid transparent;border-radius:4px;background:transparent;color:var(--text);outline:none}
 .t-inp:focus{border-color:var(--green-mid);background:var(--surface)}
-.del-btn{background:none;border:none;color:var(--text4);cursor:pointer;font-size:14px;padding:3px 5px;border-radius:4px;transition:all .15s}
+.del-btn{background:none;border:none;color:var(--text4);cursor:pointer;font-size:14px;padding:3px 5px;border-radius:4px}
 .del-btn:hover{background:var(--red-light);color:var(--red)}
 .add-row{display:flex;gap:6px;margin-top:.875rem;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem}
-.a-inp{font-family:Inter,sans-serif;font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);outline:none;transition:border-color .15s}
+.a-inp{font-family:Inter,sans-serif;font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);outline:none}
 .a-inp:focus{border-color:var(--green-mid)}
-.a-btn{font-size:12px;font-family:Inter,sans-serif;font-weight:600;padding:6px 14px;border-radius:6px;border:none;background:var(--green);color:#fff;cursor:pointer;white-space:nowrap}
-.a-btn:hover{background:#1B4D38}
+.a-btn{font-size:12px;font-family:Inter,sans-serif;font-weight:600;padding:6px 14px;border-radius:6px;border:none;background:var(--green);color:#fff;cursor:pointer}
 
-/* ══ TOP BAR ══ */
-.top-bar{background:#111;color:#fff;font-size:12px;position:sticky;top:0;z-index:200}
+/* TOP BAR */
+.top-bar{background:#111;color:#fff;position:sticky;top:0;z-index:200}
 .top-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:.5rem 1.25rem}
-.top-dot{width:7px;height:7px;border-radius:50%;background:#555;flex-shrink:0;transition:background .3s}
+.top-dot{width:7px;height:7px;border-radius:50%;background:#555;flex-shrink:0}
 .top-dot.ok{background:#52B788}
 .top-text{flex:1;color:rgba(255,255,255,.6);font-size:11px}
 .top-actions{display:flex;gap:6px}
-.top-btn{font-size:11px;font-family:Inter,sans-serif;padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.6);cursor:pointer;transition:all .15s}
+.top-btn{font-size:11px;font-family:Inter,sans-serif;padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.6);cursor:pointer}
 .top-btn:hover{background:rgba(255,255,255,.1);color:#fff}
-.top-btn.g{background:rgba(82,183,136,.2);border-color:#52B788;color:#95D5B2}
+.top-btn.p{background:rgba(124,58,237,.3);border-color:#7C3AED;color:#C4B5FD}
 .top-btn.a{background:rgba(255,200,80,.1);border-color:rgba(255,200,80,.35);color:rgba(255,200,80,.8)}
 
-/* ══ HEADER ══ */
+/* HEADER */
 .site-hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:.875rem 1.25rem;box-shadow:var(--shadow)}
 .hdr-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .logos{display:flex;align-items:center;gap:1rem}
 .logo-a{height:50px;width:auto}
 .logo-u{height:42px;width:auto}
 .logo-div{width:1px;height:34px;background:var(--border)}
-.hdr-right{text-align:right}
-.hdr-right h1{font-family:"Playfair Display",serif;font-size:17px;font-weight:700;color:var(--green);line-height:1.2}
-.hdr-right p{font-size:11px;color:var(--text3);margin-top:2px}
+.hdr-right h1{font-family:"Playfair Display",serif;font-size:17px;font-weight:700;color:var(--green);text-align:right}
+.hdr-right p{font-size:11px;color:var(--text3);margin-top:2px;text-align:right}
 
-/* ══ HERO ══ */
-.hero{background:linear-gradient(135deg,#1B4D38 0%,var(--green) 50%,var(--green2) 100%);color:#fff;padding:2.5rem 1.5rem 2rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 Q35 20 50 25 Q35 30 30 55 Q25 30 10 25 Q25 20 30 5Z' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E") repeat;pointer-events:none}
+/* HERO */
+.hero{background:linear-gradient(135deg,#1B4D38,var(--green),var(--green2));color:#fff;padding:2.5rem 1.5rem 2rem;text-align:center;position:relative;overflow:hidden}
 .hero-badge-row{display:flex;justify-content:center;gap:6px;margin-bottom:1rem;flex-wrap:wrap}
-.hero-pill{font-size:10px;padding:3px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);background:rgba(255,255,255,.08);letter-spacing:.02em}
+.hero-pill{font-size:10px;padding:3px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);background:rgba(255,255,255,.08)}
+.hero-pill.free{background:rgba(34,197,94,.2);border-color:rgba(34,197,94,.4);color:#86EFAC;font-weight:600}
 .hero-title{font-family:"Playfair Display",serif;font-size:clamp(22px,4.5vw,40px);font-weight:700;line-height:1.12;margin-bottom:.6rem}
 .hero-title em{font-style:normal;color:#95D5B2}
 .hero-sub{font-size:13px;opacity:.75;max-width:480px;margin:0 auto 1.25rem}
 .hero-search{max-width:420px;margin:0 auto;display:flex;gap:8px}
-.hero-search-inp{flex:1;font-family:Inter,sans-serif;font-size:13px;padding:10px 14px;border-radius:10px;border:none;background:rgba(255,255,255,.15);color:#fff;outline:none;backdrop-filter:blur(8px)}
+.hero-search-inp{flex:1;font-family:Inter,sans-serif;font-size:13px;padding:10px 14px;border-radius:10px;border:none;background:rgba(255,255,255,.15);color:#fff;outline:none}
 .hero-search-inp::placeholder{color:rgba(255,255,255,.5)}
 .hero-search-inp:focus{background:rgba(255,255,255,.22)}
-.hero-search-btn{font-size:13px;font-family:Inter,sans-serif;font-weight:600;padding:10px 16px;border-radius:10px;border:none;background:#fff;color:var(--green);cursor:pointer;white-space:nowrap}
+.hero-search-btn{font-size:13px;font-family:Inter,sans-serif;font-weight:600;padding:10px 16px;border-radius:10px;border:none;background:#fff;color:var(--green);cursor:pointer}
 
-/* ══ LAYOUT ══ */
+/* APP */
 .app{max-width:1180px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
-
-/* ══ TABS ══ */
 .app-tabs{display:flex;gap:4px;margin-bottom:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:4px}
 .app-tab{flex:1;font-size:12px;font-family:Inter,sans-serif;font-weight:500;padding:.625rem;border:none;border-radius:10px;background:transparent;color:var(--text3);cursor:pointer;transition:all .15s;white-space:nowrap}
-.app-tab:hover{color:var(--text2)}
 .app-tab.active{background:var(--green);color:#fff;font-weight:600;box-shadow:0 2px 8px rgba(45,106,79,.3)}
 .tab-content{display:none}.tab-content.active{display:block}
 
-/* ══ BUILDER ══ */
+/* BUILDER */
 .builder-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:1.25rem;align-items:start}
 @media(max-width:760px){.builder-grid{grid-template-columns:1fr}}
 
-/* ══ CARD ══ */
+/* CARD */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
-.card-hdr{padding:.75rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--surface)}
+.card-hdr{padding:.75rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .card-title{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text3)}
-.card-badge{font-size:11px;color:var(--green);font-weight:600}
 
-/* ══ SEARCH IN PANEL ══ */
+/* SEARCH */
 .prod-search-wrap{padding:.625rem 1.25rem .25rem;position:relative}
-.prod-search{width:100%;font-family:Inter,sans-serif;font-size:13px;padding:7px 12px 7px 34px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);outline:none;transition:border-color .15s}
+.prod-search{width:100%;font-family:Inter,sans-serif;font-size:13px;padding:7px 12px 7px 34px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);outline:none}
 .prod-search:focus{border-color:var(--green-mid)}
 .prod-search-icon{position:absolute;left:1.7rem;top:50%;transform:translateY(-50%);color:var(--text3);font-size:14px;pointer-events:none}
 
-/* ══ CAT TABS ══ */
+/* CATS */
 .cat-scroll{display:flex;gap:5px;overflow-x:auto;padding:.625rem 1.25rem .5rem;scrollbar-width:none}
 .cat-scroll::-webkit-scrollbar{display:none}
 .cat-btn{white-space:nowrap;font-size:11px;font-family:Inter,sans-serif;font-weight:500;padding:4px 11px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
@@ -179,91 +158,79 @@ body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-he
 .cat-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
 .cat-btn .cnt{font-size:10px;opacity:.7;margin-left:3px}
 
-/* ══ PRODUCTS GRID ══ */
+/* PRODUCTS */
 .products{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:0 1.25rem 1rem;max-height:300px;overflow-y:auto}
 .prod{display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:all .15s;font-size:12px;color:var(--text);position:relative}
 .prod:hover{border-color:var(--green-mid);background:var(--green-light)}
 .prod.sel{border-color:var(--green);background:var(--green-light);color:var(--green)}
-.prod-chk{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;transition:all .15s}
+.prod-chk{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px}
 .prod.sel .prod-chk{background:var(--green);border-color:var(--green);color:#fff}
 .prod-kcal{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:9px;color:var(--text3);background:var(--surface2);padding:1px 5px;border-radius:8px}
 .prod.sel .prod-kcal{display:none}
 
-/* ══ SELECTED ══ */
-.sel-wrap{padding:0 1.25rem;max-height:280px;overflow-y:auto}
+/* SELECTED */
+.sel-wrap{padding:0 1.25rem;max-height:260px;overflow-y:auto}
 .sel-row{display:flex;align-items:center;gap:6px;padding:6px 0;border-bottom:1px solid var(--border)}
 .sel-row:last-child{border:none}
-.sel-name{flex:1;font-size:12px;color:var(--text);line-height:1.3}
-.gram-inp{width:50px;font-size:12px;font-family:Inter,sans-serif;text-align:center;padding:3px 5px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);outline:none;transition:border-color .15s}
+.sel-name{flex:1;font-size:12px;color:var(--text)}
+.gram-inp{width:50px;font-size:12px;font-family:Inter,sans-serif;text-align:center;padding:3px 5px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);outline:none}
 .gram-inp:focus{border-color:var(--green-mid)}
 .gram-unit{font-size:10px;color:var(--text3)}
-.gram-icon{font-size:12px}
-.rm-btn{background:none;border:none;color:var(--text4);cursor:pointer;font-size:14px;line-height:1;padding:2px 4px;border-radius:4px;transition:all .15s}
+.rm-btn{background:none;border:none;color:var(--text4);cursor:pointer;font-size:14px;line-height:1;padding:2px 4px;border-radius:4px}
 .rm-btn:hover{background:var(--red-light);color:var(--red)}
 .empty-hint{padding:2rem 1.25rem;text-align:center;font-size:13px;color:var(--text3);line-height:1.9}
 .empty-hint .big{font-size:32px;display:block;margin-bottom:.5rem}
 .gram-note{background:var(--green-light);border-left:3px solid var(--green-mid);padding:.5rem .875rem;font-size:11px;color:var(--green);margin:.625rem 1.25rem 0;line-height:1.5}
 
-/* ══ MACRO BAR ══ */
-.macro-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:.75rem 1.25rem}
-.macro-cell{background:var(--surface2);border-radius:8px;padding:8px;text-align:center}
-.macro-val{font-size:16px;font-weight:700;color:var(--text);line-height:1.1}
-.macro-lbl{font-size:9px;color:var(--text3);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
-
-/* ══ MACRO VISUAL ══ */
+/* MACRO RINGS */
 .macro-rings{display:flex;align-items:center;justify-content:center;gap:1.5rem;padding:.75rem 1.25rem;flex-wrap:wrap}
 .ring-wrap{text-align:center}
 .ring-svg{width:56px;height:56px}
 .ring-lbl{font-size:10px;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:.04em}
 .ring-val{font-size:13px;font-weight:700;color:var(--text)}
 
-/* ══ GOAL ══ */
-.goal-row{display:flex;gap:5px;padding:0 1.25rem 1rem;flex-wrap:wrap}
-.goal-btn{font-size:11px;font-family:Inter,sans-serif;padding:5px 11px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
-.goal-btn:hover{border-color:var(--amber2);color:var(--amber)}
-.goal-btn.active{background:var(--amber-light);color:var(--amber);border-color:var(--amber);font-weight:500}
+/* SHOPPING */
+.shop-section{padding:0 1.25rem .875rem;display:none}
+.shop-section.show{display:block}
+.shop-title{font-size:11px;font-weight:600;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem;letter-spacing:.06em}
+.shop-list{display:flex;flex-direction:column;gap:4px}
+.shop-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);cursor:pointer}
+.shop-item.checked{text-decoration:line-through;color:var(--text3)}
+.shop-copy{font-size:11px;margin-top:.5rem;padding:5px 12px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--text3);cursor:pointer;font-family:Inter,sans-serif}
+.shop-copy:hover{background:var(--green-light);color:var(--green);border-color:var(--green-mid)}
 
-/* ══ SERVINGS ══ */
-.servings-row{display:flex;align-items:center;gap:10px;padding:0 1.25rem .875rem}
-.serv-lbl{font-size:12px;color:var(--text2);flex:1}
+/* SERVINGS */
+.serv-row{display:flex;align-items:center;padding:.875rem 1.25rem;gap:10px}
+.serv-lbl{flex:1;font-size:12px;color:var(--text2)}
 .serv-ctrl{display:flex;align-items:center;gap:8px}
-.serv-btn{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.serv-btn{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
 .serv-btn:hover{background:var(--green);color:#fff;border-color:var(--green)}
 .serv-val{font-size:15px;font-weight:600;color:var(--text);min-width:24px;text-align:center}
 
-/* ══ GENERATE BTN ══ */
+/* GOAL */
+.goal-row{display:flex;gap:5px;padding:0 1.25rem 1rem;flex-wrap:wrap}
+.goal-btn{font-size:11px;font-family:Inter,sans-serif;padding:5px 11px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
+.goal-btn.active{background:var(--amber-light);color:var(--amber);border-color:var(--amber);font-weight:500}
+
+/* GENERATE */
 .gen-wrap{padding:0 1.25rem 1.25rem}
-.gen-btn{width:100%;padding:12px;font-size:14px;font-weight:700;font-family:Inter,sans-serif;border-radius:var(--radius);border:none;background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;cursor:pointer;transition:all .2s;letter-spacing:.01em;box-shadow:0 4px 16px rgba(45,106,79,.3)}
+.gen-btn{width:100%;padding:12px;font-size:14px;font-weight:700;font-family:Inter,sans-serif;border-radius:var(--radius);border:none;background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(45,106,79,.3)}
 .gen-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 20px rgba(45,106,79,.4)}
-.gen-btn:active:not(:disabled){transform:translateY(0)}
-.gen-btn:disabled{background:var(--surface3);color:var(--text3);cursor:not-allowed;box-shadow:none}
+.gen-btn:disabled{background:var(--surface3);color:var(--text3);cursor:not-allowed;box-shadow:none;transform:none}
 .gen-note{font-size:11px;color:var(--text3);text-align:center;margin-top:.5rem;line-height:1.5}
 
-/* ══ SHOPPING LIST ══ */
-.shop-section{padding:0 1.25rem .875rem;display:none}
-.shop-section.show{display:block}
-.shop-title{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem}
-.shop-list{display:flex;flex-direction:column;gap:4px}
-.shop-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2)}
-.shop-item input[type=checkbox]{accent-color:var(--green);width:14px;height:14px;cursor:pointer}
-.shop-item.checked{text-decoration:line-through;color:var(--text3)}
-.shop-item.checked input{opacity:.5}
-.shop-copy{font-size:11px;margin-top:.5rem;padding:5px 12px;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--text3);cursor:pointer;font-family:Inter,sans-serif;transition:all .15s}
-.shop-copy:hover{background:var(--green-light);color:var(--green);border-color:var(--green-mid)}
-
-/* ══ RECIPE ══ */
+/* RECIPE */
 .recipe-section{margin-top:1.5rem}
 .recipe-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;animation:fadeUp .4s ease;box-shadow:var(--shadow-lg)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.recipe-hero{background:linear-gradient(135deg,#1B4D38,var(--green2));color:#fff;padding:1.5rem 1.75rem 1.25rem;position:relative}
-.recipe-hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(to bottom,transparent,rgba(0,0,0,.1))}
+.recipe-hero{background:linear-gradient(135deg,#1B4D38,var(--green2));color:#fff;padding:1.5rem 1.75rem 1.25rem}
 .recipe-diff{display:inline-block;font-size:10px;padding:3px 9px;border-radius:10px;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);margin-bottom:.625rem;letter-spacing:.04em;text-transform:uppercase}
 .recipe-name{font-family:"Playfair Display",serif;font-size:clamp(20px,3vw,26px);font-weight:700;line-height:1.2;margin-bottom:.4rem}
-.recipe-desc{font-size:13px;opacity:.82;max-width:600px}
+.recipe-desc{font-size:13px;opacity:.82}
 .recipe-meta{display:flex;gap:1.25rem;margin-top:.875rem;flex-wrap:wrap}
-.recipe-meta-item{font-size:12px;opacity:.75;display:flex;align-items:center;gap:5px}
-.recipe-actions{display:flex;gap:8px;margin-top:1rem}
-.recipe-action-btn{font-size:12px;font-family:Inter,sans-serif;font-weight:500;padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;cursor:pointer;transition:all .15s;backdrop-filter:blur(4px)}
+.recipe-meta-item{font-size:12px;opacity:.75}
+.recipe-actions{display:flex;gap:8px;margin-top:1rem;flex-wrap:wrap}
+.recipe-action-btn{font-size:12px;font-family:Inter,sans-serif;font-weight:500;padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;cursor:pointer}
 .recipe-action-btn:hover{background:rgba(255,255,255,.2)}
 .recipe-body{padding:1.5rem 1.75rem}
 .section-lbl{font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text3);margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
@@ -271,59 +238,52 @@ body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-he
 .steps-list{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem}
 .step{display:flex;gap:1rem}
 .step-num{width:28px;height:28px;border-radius:50%;background:var(--green-light);color:var(--green);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
-.step-body{flex:1}
 .step-text{font-size:14px;line-height:1.65;color:var(--text)}
-.step-time{font-size:11px;color:var(--text3);margin-top:3px;display:flex;align-items:center;gap:4px}
+.step-time{font-size:11px;color:var(--text3);margin-top:3px}
 .nutri-tip{background:linear-gradient(135deg,var(--amber-light),#fef7f0);border:1px solid #f5cba5;border-radius:var(--radius);padding:1rem 1.25rem;font-size:13px;color:#7a3010;line-height:1.65}
 .nutri-tip strong{display:block;margin-bottom:.35rem;font-size:10px;letter-spacing:.06em;text-transform:uppercase;opacity:.65}
 .ingr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:7px;margin-bottom:1.5rem}
 .ingr-pill{background:var(--surface2);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--text2);border:1px solid var(--border)}
 .ingr-pill span{display:block;font-size:11px;color:var(--text3);margin-top:2px}
-
-/* ══ RECIPE NUTRITION VISUAL ══ */
-.recipe-nutri-bar{display:flex;margin-bottom:1.5rem;gap:0;border-radius:8px;overflow:hidden;height:10px}
-.nutri-seg{height:100%;transition:width .5s ease;position:relative}
-.nutri-seg[data-type="prot"]{background:#52B788}
-.nutri-seg[data-type="fat"]{background:#F4A261}
-.nutri-seg[data-type="carb"]{background:#4A9CE8}
-.nutri-legend{display:flex;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap}
-.nutri-leg-item{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:5px}
+.nutri-boxes{display:flex;gap:10px;margin-bottom:1.25rem;flex-wrap:wrap}
+.nutri-box{border-radius:8px;padding:8px 14px;text-align:center}
+.nutri-box-val{font-size:18px;font-weight:700;line-height:1.1}
+.nutri-box-lbl{font-size:10px;opacity:.75;text-transform:uppercase;margin-top:2px}
+.nutri-bar{display:flex;height:10px;border-radius:8px;overflow:hidden;margin-bottom:.5rem}
+.nutri-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.nutri-leg{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:5px}
 .nutri-dot{width:8px;height:8px;border-radius:50%}
-
-/* ══ LOADING ══ */
 .loading{padding:3rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem}
 .spinner{width:36px;height:36px;border:3px solid var(--green-light);border-top-color:var(--green);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-msg{font-size:14px;color:var(--text2);font-weight:500}
 .loading-sub{font-size:12px;color:var(--text3)}
 
-/* ══ FAVOURITES tab ══ */
+/* FAVS */
 .favs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 .fav-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;box-shadow:var(--shadow);cursor:pointer;transition:all .2s}
 .fav-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .fav-name{font-family:"Playfair Display",serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:.25rem}
-.fav-meta{font-size:12px;color:var(--text3);margin-bottom:.75rem}
-.fav-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:.75rem}
+.fav-meta{font-size:12px;color:var(--text3);margin-bottom:.625rem}
+.fav-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:.625rem}
 .fav-tag{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--green-light);color:var(--green);font-weight:500}
 .fav-footer{display:flex;justify-content:space-between;align-items:center}
 .fav-del{font-size:11px;color:var(--text3);background:none;border:none;cursor:pointer;padding:3px 7px;border-radius:5px}
 .fav-del:hover{background:var(--red-light);color:var(--red)}
 .fav-open{font-size:11px;font-family:Inter,sans-serif;font-weight:600;padding:5px 12px;border-radius:7px;border:none;background:var(--green);color:#fff;cursor:pointer}
-.fav-empty{text-align:center;padding:3rem;color:var(--text3);font-size:14px}
+.fav-empty{text-align:center;padding:3rem;color:var(--text3);font-size:14px;grid-column:1/-1}
 .fav-empty .big{font-size:40px;margin-bottom:.75rem;display:block}
 
-/* ══ TIPS tab ══ */
+/* TIPS */
 .tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
 .tip-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;box-shadow:var(--shadow)}
 .tip-icon{font-size:28px;margin-bottom:.625rem;display:block}
 .tip-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:.4rem}
 .tip-text{font-size:13px;color:var(--text2);line-height:1.65}
 
-/* scrollbars */
 .products::-webkit-scrollbar,.sel-wrap::-webkit-scrollbar,.admin-content::-webkit-scrollbar{width:4px}
 .products::-webkit-scrollbar-thumb,.sel-wrap::-webkit-scrollbar-thumb,.admin-content::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 
-/* ══ FOOTER ══ */
 .footer{background:var(--surface);border-top:1px solid var(--border);padding:1.25rem}
 .footer-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .footer-logos{display:flex;align-items:center;gap:.875rem}
@@ -334,51 +294,58 @@ body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-he
 </head>
 <body>
 
-<!-- ══ API KEY MODAL ══ -->
+<!-- GROQ KEY MODAL -->
 <div class="overlay hidden" id="apiModal">
   <div class="modal api-modal">
-    <div class="modal-hdr green">
-      <h2>🔑 API ключ керек</h2>
-      <p>Рецепт жасоо үчүн Anthropic API ключи керек — бир жолу жасалат, бекер</p>
+    <div class="modal-hdr purple">
+      <h2>🌐 OpenRouter API ключи — бекер!</h2>
+      <p>Карта керек эмес · 3 кадамда даяр · 1 мүнөттө</p>
     </div>
     <div class="modal-body">
+      <div class="free-badge">✅ Толугу менен БЕКЕР — кредит карта жок</div>
+
       <div class="step-row"><div class="step-num">1</div><div class="step-body">
-        <strong>Anthropic Console сайтына кириңиз</strong>
-        <span><a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> — жаңы өтмөктө ачыңыз</span>
+        <strong>OpenRouter сайтына кириңиз</strong>
+        <span>Жаңы өтмөктө ачыңыз: <a href="https://openrouter.ai" target="_blank">openrouter.ai</a></span>
       </div></div>
+
       <div class="step-row"><div class="step-num">2</div><div class="step-body">
-        <strong>Аккаунт жасаңыз (бекер, карта керек эмес)</strong>
-        <span>«Sign up» → email → сырсөз → тастыктоо хаты</span>
+        <strong>Google аккаунтуңуз менен кириңиз</strong>
+        <span>«Sign in with Google» баскычын басыңыз — бир секундда кирет</span>
       </div></div>
+
       <div class="step-row"><div class="step-num">3</div><div class="step-body">
-        <strong>API keys → + Create key</strong>
-        <span>Сол меню → <strong>API keys</strong> → <strong>+ Create key</strong> → ат жазып → <strong>Add</strong></span>
+        <strong>Keys → Create Key</strong>
+        <span>Сол меню → Аватар (оң жогору) → <strong>Keys</strong> → <strong>Create Key</strong> → <strong>Create</strong></span>
       </div></div>
+
       <div class="step-row"><div class="step-num">4</div><div class="step-body">
-        <strong>Ключту көчүрүп, бул жерге чаптаңыз</strong>
-        <span>⚠️ Ключ <strong>бир жолу гана</strong> көрүнөт — дароо көчүрүңүз! <code>sk-ant-api03-...</code> деп башталат</span>
+        <strong>Ключту бул жерге чаптаңыз</strong>
+        <span>Ключ <code>sk-or-v1-...</code> деп башталат — аны көчүрүп, төмөндөгү талаага чаптаңыз</span>
       </div></div>
+
       <div style="border-top:1px solid var(--border);padding-top:1rem;margin-top:.5rem">
-        <div class="key-input-row">
-          <input class="key-inp" id="apiKeyInp" type="password" placeholder="sk-ant-api03-..." autocomplete="off"/>
+        <div class="key-row">
+          <input class="key-inp" id="apiKeyInp" type="password" placeholder="sk-or-v1-..." autocomplete="off"/>
           <button class="key-btn" onclick="saveApiKey()">Сактоо ✓</button>
         </div>
-        <div class="modal-note">🔒 Ключ браузериңизде гана сакталат, эч кимге жөнөтүлбөйт.<br/>⚡ 1 рецепт ≈ $0.002 (0.2 тыйын). $5 бекер кредит менен 2 500+ рецепт жасаса болот.</div>
+        <div class="modal-note">
+          🔒 Ключ браузериңизде гана сакталат.<br/>
+          ⚡ Бекер модель: <strong>Llama 3.3 70B</strong> — толугу менен акысыз!
+        </div>
       </div>
       <div class="modal-skip" onclick="closeApiModal()">Кийинчерек киргизем →</div>
     </div>
   </div>
 </div>
 
-<!-- ══ ADMIN LOGIN MODAL ══ -->
+<!-- ADMIN LOGIN -->
 <div class="overlay hidden" id="adminLoginModal">
   <div class="modal" style="max-width:360px">
-    <div class="modal-hdr" style="background:#1A1A18">
-      <h2>🔐 Админ кириш</h2><p>Сырсөздү киргизиңиз</p>
-    </div>
+    <div class="modal-hdr" style="background:#1A1A18"><h2>🔐 Админ кириш</h2><p>Сырсөздү киргизиңиз</p></div>
     <div class="modal-body">
       <input class="key-inp" id="adminPwdInp" type="password" placeholder="Сырсөз..." onkeydown="if(event.key==='Enter')checkAdmin()" style="width:100%;margin-bottom:8px"/>
-      <button class="key-btn" onclick="checkAdmin()" style="width:100%">Кирүү</button>
+      <button class="key-btn" onclick="checkAdmin()" style="width:100%;background:var(--green)">Кирүү</button>
       <div id="adminErr" style="font-size:12px;color:var(--red);margin-top:.5rem;display:none">Туура эмес сырсөз</div>
       <div style="font-size:11px;color:var(--text3);margin-top:.75rem">Демейки: <code>admin2025</code></div>
       <div class="modal-skip" onclick="document.getElementById('adminLoginModal').classList.add('hidden')">Жабуу</div>
@@ -386,11 +353,11 @@ body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-he
   </div>
 </div>
 
-<!-- ══ ADMIN PANEL MODAL ══ -->
+<!-- ADMIN PANEL -->
 <div class="overlay hidden" id="adminModal">
   <div class="modal admin-modal">
     <div class="admin-hdr">
-      <h2>⚙️ Админ панели — Саламаттык конструктору</h2>
+      <h2>⚙️ Админ панели — Саламаттык</h2>
       <button class="admin-close" onclick="document.getElementById('adminModal').classList.add('hidden')">×</button>
     </div>
     <div class="admin-tabs">
@@ -400,75 +367,61 @@ body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-he
       <button class="admin-tab" onclick="adminTab(this,'goals')">🎯 Максаттар</button>
     </div>
     <div class="admin-content">
-
-      <!-- STATS -->
       <div class="admin-sec active" id="sec-stats">
         <div class="stats-grid" id="statsGrid"></div>
         <div class="chart-row">
-          <div class="chart-box">
-            <div class="chart-title">Рецепт саны (акыркы 7 күн)</div>
-            <div class="bar-chart" id="chartDays"></div>
-          </div>
-          <div class="chart-box">
-            <div class="chart-title">Эң популярдуу максат</div>
-            <div class="bar-chart" id="chartGoals"></div>
-          </div>
+          <div class="chart-box"><div class="chart-title">Рецепт (акыркы 7 күн)</div><div class="bar-chart" id="chartDays"></div></div>
+          <div class="chart-box"><div class="chart-title">Популярдуу максат</div><div class="bar-chart" id="chartGoals"></div></div>
         </div>
-        <div style="font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--text3);margin-bottom:.625rem">Акыркы активдүүлүк</div>
-        <div class="activity-list" id="actList"></div>
+        <div style="font-size:11px;font-weight:600;text-transform:uppercase;color:var(--text3);margin-bottom:.625rem;letter-spacing:.05em">Акыркы активдүүлүк</div>
+        <div class="act-list" id="actList"></div>
         <div style="margin-top:1rem;padding:.75rem 1rem;background:var(--blue-light);border-radius:8px;font-size:12px;color:var(--blue);line-height:1.6">
-          💡 <strong>Эскертүү:</strong> Статистика учурда бул браузерде гана сакталат. Жалпы колдонуучуларды эсептөө үчүн сервер (backend) керек болот — GitHub Pages, Supabase же Firebase менен туташтырса болот.
+          💡 Статистика учурда бул браузерде сакталат. Жалпы колдонуучуларды эсептөө үчүн серверди туташтыруу керек.
         </div>
         <div style="margin-top:.75rem;display:flex;gap:8px">
-          <button onclick="exportStats()" style="font-size:12px;font-family:Inter,sans-serif;padding:6px 14px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer">📥 Статистиканы экспорт</button>
-          <button onclick="if(confirm('Бардык статистиканы тазалайбызбы?')){localStorage.removeItem('ky_stats');refreshStats();}" style="font-size:12px;font-family:Inter,sans-serif;padding:6px 14px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--red);cursor:pointer">🗑 Тазалоо</button>
+          <button onclick="exportStats()" style="font-size:12px;font-family:Inter,sans-serif;padding:6px 14px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer">📥 Экспорт</button>
+          <button onclick="if(confirm('Тазалайбызбы?')){localStorage.removeItem('ky_stats');refreshStats();}" style="font-size:12px;font-family:Inter,sans-serif;padding:6px 14px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--red);cursor:pointer">🗑 Тазалоо</button>
         </div>
       </div>
-
-      <!-- PRODUCTS -->
       <div class="admin-sec" id="sec-products">
-        <div class="save-bar" id="prodSaveBar"><span>⚠️ Сакталган жок — «Сактоо» баскычын басыңыз</span><button class="save-bar-btn" onclick="saveProds()">💾 Сактоо</button></div>
+        <div class="save-bar" id="prodSaveBar"><span>⚠️ Сакталган жок</span><button class="save-bar-btn" onclick="saveProds()">💾 Сактоо</button></div>
         <div class="adm-cat-row" id="admCatRow"></div>
         <table class="prod-table">
-          <thead><tr><th width="36">😀</th><th>Аты</th><th width="56">ккал</th><th width="48">Б</th><th width="48">М</th><th width="48">У</th><th width="56">Г (болж)</th><th width="30"></th></tr></thead>
+          <thead><tr><th width="36">😀</th><th>Аты</th><th width="56">ккал</th><th width="48">Б</th><th width="48">М</th><th width="48">У</th><th width="56">Г</th><th width="30"></th></tr></thead>
           <tbody id="admProdTbl"></tbody>
         </table>
         <div class="add-row">
           <input class="a-inp" id="np_e" placeholder="🥬" style="width:50px"/>
-          <input class="a-inp" id="np_n" placeholder="Продукттун аты" style="flex:1;min-width:120px"/>
-          <input class="a-inp" id="np_c" placeholder="ккал" type="number" style="width:70px"/>
-          <input class="a-inp" id="np_p" placeholder="Б г" type="number" style="width:60px"/>
-          <input class="a-inp" id="np_f" placeholder="М г" type="number" style="width:60px"/>
-          <input class="a-inp" id="np_ca" placeholder="У г" type="number" style="width:60px"/>
-          <input class="a-inp" id="np_g" placeholder="Г" type="number" style="width:60px"/>
+          <input class="a-inp" id="np_n" placeholder="Продукт аты" style="flex:1;min-width:120px"/>
+          <input class="a-inp" id="np_c" placeholder="ккал" type="number" style="width:65px"/>
+          <input class="a-inp" id="np_p" placeholder="Б" type="number" style="width:55px"/>
+          <input class="a-inp" id="np_f" placeholder="М" type="number" style="width:55px"/>
+          <input class="a-inp" id="np_ca" placeholder="У" type="number" style="width:55px"/>
+          <input class="a-inp" id="np_g" placeholder="Г" type="number" style="width:55px"/>
           <button class="a-btn" onclick="addProd()">+ Кошуу</button>
         </div>
       </div>
-
-      <!-- CATS -->
       <div class="admin-sec" id="sec-cats">
         <div class="save-bar" id="catSaveBar"><span>⚠️ Сакталган жок</span><button class="save-bar-btn" onclick="saveProds()">💾 Сактоо</button></div>
         <table class="prod-table">
-          <thead><tr><th>Категория аты</th><th>Продукттар</th><th width="30"></th></tr></thead>
+          <thead><tr><th>Категория</th><th>Продуктулар</th><th width="30"></th></tr></thead>
           <tbody id="catTbl"></tbody>
         </table>
         <div class="add-row">
-          <input class="a-inp" id="nc_n" placeholder="🌿 Жаңы категория аты" style="flex:1"/>
+          <input class="a-inp" id="nc_n" placeholder="🌿 Жаңы категория" style="flex:1"/>
           <button class="a-btn" onclick="addCat()">+ Кошуу</button>
         </div>
       </div>
-
-      <!-- GOALS -->
       <div class="admin-sec" id="sec-goals">
         <div class="save-bar" id="goalSaveBar"><span>⚠️ Сакталган жок</span><button class="save-bar-btn" onclick="saveGoalsData()">💾 Сактоо</button></div>
         <table class="prod-table">
-          <thead><tr><th width="80">Ключ</th><th>Аты (кыргызча)</th><th>AI нускамасы</th><th width="30"></th></tr></thead>
+          <thead><tr><th width="80">Ключ</th><th>Аты</th><th>AI нускамасы</th><th width="30"></th></tr></thead>
           <tbody id="goalTbl"></tbody>
         </table>
-        <div class="add-row" style="margin-top:.875rem">
+        <div class="add-row">
           <input class="a-inp" id="ng_k" placeholder="key" style="width:90px"/>
-          <input class="a-inp" id="ng_l" placeholder="🎯 Максаттын аты" style="flex:1"/>
-          <input class="a-inp" id="ng_n" placeholder="AI нускамасы..." style="flex:2"/>
+          <input class="a-inp" id="ng_l" placeholder="Максат аты" style="flex:1"/>
+          <input class="a-inp" id="ng_n" placeholder="AI нускамасы" style="flex:2"/>
           <button class="a-btn" onclick="addGoal()">+ Кошуу</button>
         </div>
       </div>
@@ -476,19 +429,19 @@ body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-he
   </div>
 </div>
 
-<!-- ══ TOP BAR ══ -->
+<!-- TOP BAR -->
 <div class="top-bar">
   <div class="top-inner">
     <div class="top-dot" id="topDot"></div>
-    <span class="top-text" id="topText">API ключ киргизилген жок</span>
+    <span class="top-text" id="topText">OpenRouter ключ жок — бекер алуу!</span>
     <div class="top-actions">
-      <button class="top-btn g" id="topApiBtn" onclick="openApiModal()">Ключ киргизүү</button>
+      <button class="top-btn p" id="topApiBtn" onclick="openApiModal()">🌐 Бекер ключ алуу</button>
       <button class="top-btn a" onclick="openAdminLogin()">⚙️ Админ</button>
     </div>
   </div>
 </div>
 
-<!-- ══ HEADER ══ -->
+<!-- HEADER -->
 <div class="site-hdr">
   <div class="hdr-inner">
     <div class="logos">
@@ -503,44 +456,39 @@ body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-he
   </div>
 </div>
 
-<!-- ══ HERO ══ -->
+<!-- HERO -->
 <div class="hero">
   <div class="hero-badge-row">
+    <span class="hero-pill free">✅ Толугу менен БЕКЕР</span>
+    <span class="hero-pill">⚡ Groq AI — абдан тез</span>
     <span class="hero-pill">🌿 200+ продукт</span>
-    <span class="hero-pill">🤖 AI рецепт</span>
     <span class="hero-pill">📊 КБЖУ эсеп</span>
     <span class="hero-pill">🛒 Соода тизмеси</span>
     <span class="hero-pill">⭐ Сакталган рецепттер</span>
     <span class="hero-pill">🌿 Улулу 50+</span>
   </div>
   <h1 class="hero-title">Жергиликтүү продуктулардан<br/><em>саламаттыкка пайдалуу тамак</em></h1>
-  <p class="hero-sub">AI жардамы менен нутрициологиялык жактан туура рецепт куруңуз — кыргыз ашканасынын стилинде</p>
+  <p class="hero-sub">Groq AI жардамы менен нутрициологиялык жактан туура рецепт куруңуз — бекер жана тез!</p>
   <div class="hero-search">
-    <input class="hero-search-inp" id="heroSearch" placeholder="Продукт издеңиз... мис. «помидор», «курут»" oninput="heroSearchFn(this.value)"/>
+    <input class="hero-search-inp" id="heroSearch" placeholder="Продукт издеңиз... «помидор», «курут»" oninput="heroSearchFn(this.value)"/>
     <button class="hero-search-btn" onclick="heroSearchFn(document.getElementById('heroSearch').value)">Издөө</button>
   </div>
 </div>
 
-<!-- ══ APP ══ -->
 <div class="app">
-
-  <!-- Tabs -->
   <div class="app-tabs">
     <button class="app-tab active" onclick="switchTab(this,'builder')">🍳 Рецепт куруу</button>
     <button class="app-tab" onclick="switchTab(this,'favourites')">⭐ Сакталган</button>
-    <button class="app-tab" onclick="switchTab(this,'tips')">💡 Нутрициология кеңештери</button>
+    <button class="app-tab" onclick="switchTab(this,'tips')">💡 Нутрициология</button>
   </div>
 
-  <!-- ══ BUILDER TAB ══ -->
   <div class="tab-content active" id="tab-builder">
     <div class="builder-grid">
-
-      <!-- LEFT: product selector -->
       <div>
         <div class="card">
           <div class="card-hdr">
             <span class="card-title">Продуктуларды тандаңыз</span>
-            <span class="card-badge" id="selCount"></span>
+            <span style="font-size:11px;color:var(--green);font-weight:600" id="selCount"></span>
           </div>
           <div class="prod-search-wrap">
             <span class="prod-search-icon">🔍</span>
@@ -550,105 +498,48 @@ body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-he
           <div class="products" id="productsGrid"></div>
         </div>
       </div>
-
-      <!-- RIGHT: selected + controls -->
       <div style="display:flex;flex-direction:column;gap:1.25rem">
-
-        <!-- selected list -->
         <div class="card">
           <div class="card-hdr">
             <span class="card-title">Тандалган продуктулар</span>
             <span style="font-size:11px;color:var(--text3)">AI граммды белгилейт</span>
           </div>
-          <div class="gram-note" id="gramNote" style="display:none">💡 Граммдар болжолдуу. AI рецепт жасаганда туура пропорцияны өзү белгилейт.</div>
+          <div class="gram-note" id="gramNote" style="display:none">💡 Граммдар болжолдуу. AI туура пропорцияны өзү белгилейт.</div>
           <div class="sel-wrap" id="selectedList">
-            <div class="empty-hint"><span class="big">🥗</span>Сол жактан продукт тандаңыз<br/><small style="opacity:.65;font-size:11px">AI туура граммды өзү белгилейт</small></div>
+            <div class="empty-hint"><span class="big">🥗</span>Сол жактан продукт тандаңыз</div>
           </div>
-
-          <!-- macro rings -->
           <div class="macro-rings" id="macroRings" style="display:none">
-            <div class="ring-wrap">
-              <svg class="ring-svg" viewBox="0 0 56 56">
-                <circle cx="28" cy="28" r="22" fill="none" stroke="#E8E4DB" stroke-width="6"/>
-                <circle id="rCal" cx="28" cy="28" r="22" fill="none" stroke="#52B788" stroke-width="6" stroke-dasharray="0 138" stroke-linecap="round" transform="rotate(-90 28 28)" style="transition:stroke-dasharray .6s ease"/>
-              </svg>
-              <div class="ring-val" id="rvCal">0</div>
-              <div class="ring-lbl">ккал</div>
-            </div>
-            <div class="ring-wrap">
-              <svg class="ring-svg" viewBox="0 0 56 56">
-                <circle cx="28" cy="28" r="22" fill="none" stroke="#E8E4DB" stroke-width="6"/>
-                <circle id="rProt" cx="28" cy="28" r="22" fill="none" stroke="#52B788" stroke-width="6" stroke-dasharray="0 138" stroke-linecap="round" transform="rotate(-90 28 28)" style="transition:stroke-dasharray .6s ease"/>
-              </svg>
-              <div class="ring-val" id="rvProt">0г</div>
-              <div class="ring-lbl">белок</div>
-            </div>
-            <div class="ring-wrap">
-              <svg class="ring-svg" viewBox="0 0 56 56">
-                <circle cx="28" cy="28" r="22" fill="none" stroke="#E8E4DB" stroke-width="6"/>
-                <circle id="rFat" cx="28" cy="28" r="22" fill="none" stroke="#F4A261" stroke-width="6" stroke-dasharray="0 138" stroke-linecap="round" transform="rotate(-90 28 28)" style="transition:stroke-dasharray .6s ease"/>
-              </svg>
-              <div class="ring-val" id="rvFat">0г</div>
-              <div class="ring-lbl">май</div>
-            </div>
-            <div class="ring-wrap">
-              <svg class="ring-svg" viewBox="0 0 56 56">
-                <circle cx="28" cy="28" r="22" fill="none" stroke="#E8E4DB" stroke-width="6"/>
-                <circle id="rCarb" cx="28" cy="28" r="22" fill="none" stroke="#4A9CE8" stroke-width="6" stroke-dasharray="0 138" stroke-linecap="round" transform="rotate(-90 28 28)" style="transition:stroke-dasharray .6s ease"/>
-              </svg>
-              <div class="ring-val" id="rvCarb">0г</div>
-              <div class="ring-lbl">углевод</div>
-            </div>
+            <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 56 56"><circle cx="28" cy="28" r="22" fill="none" stroke="#E8E4DB" stroke-width="6"/><circle id="rCal" cx="28" cy="28" r="22" fill="none" stroke="#52B788" stroke-width="6" stroke-dasharray="0 138" stroke-linecap="round" transform="rotate(-90 28 28)" style="transition:stroke-dasharray .6s ease"/></svg><div class="ring-val" id="rvCal">0</div><div class="ring-lbl">ккал</div></div>
+            <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 56 56"><circle cx="28" cy="28" r="22" fill="none" stroke="#E8E4DB" stroke-width="6"/><circle id="rProt" cx="28" cy="28" r="22" fill="none" stroke="#52B788" stroke-width="6" stroke-dasharray="0 138" stroke-linecap="round" transform="rotate(-90 28 28)" style="transition:stroke-dasharray .6s ease"/></svg><div class="ring-val" id="rvProt">0г</div><div class="ring-lbl">белок</div></div>
+            <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 56 56"><circle cx="28" cy="28" r="22" fill="none" stroke="#E8E4DB" stroke-width="6"/><circle id="rFat" cx="28" cy="28" r="22" fill="none" stroke="#F4A261" stroke-width="6" stroke-dasharray="0 138" stroke-linecap="round" transform="rotate(-90 28 28)" style="transition:stroke-dasharray .6s ease"/></svg><div class="ring-val" id="rvFat">0г</div><div class="ring-lbl">май</div></div>
+            <div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 56 56"><circle cx="28" cy="28" r="22" fill="none" stroke="#E8E4DB" stroke-width="6"/><circle id="rCarb" cx="28" cy="28" r="22" fill="none" stroke="#4A9CE8" stroke-width="6" stroke-dasharray="0 138" stroke-linecap="round" transform="rotate(-90 28 28)" style="transition:stroke-dasharray .6s ease"/></svg><div class="ring-val" id="rvCarb">0г</div><div class="ring-lbl">углевод</div></div>
           </div>
-
-          <!-- shopping list -->
           <div class="shop-section" id="shopSection">
             <div class="shop-title">🛒 Соода тизмеси</div>
             <div class="shop-list" id="shopList"></div>
             <button class="shop-copy" onclick="copyShopList()">📋 Тизмени көчүрүү</button>
           </div>
         </div>
-
-        <!-- servings -->
-        <div class="card" style="padding:.875rem 1.25rem">
-          <div class="servings-row" style="padding:0;margin-bottom:0">
-            <span class="serv-lbl">🍽 Порция саны</span>
-            <div class="serv-ctrl">
-              <button class="serv-btn" onclick="changeServings(-1)">−</button>
-              <span class="serv-val" id="servVal">2</span>
-              <button class="serv-btn" onclick="changeServings(1)">+</button>
-            </div>
-          </div>
+        <div class="card" style="padding:.875rem 0">
+          <div class="serv-row"><span class="serv-lbl">🍽 Порция саны</span><div class="serv-ctrl"><button class="serv-btn" onclick="changeServings(-1)">−</button><span class="serv-val" id="servVal">2</span><button class="serv-btn" onclick="changeServings(1)">+</button></div></div>
         </div>
-
-        <!-- goal + generate -->
         <div class="card">
           <div class="card-hdr"><span class="card-title">Максат тандаңыз</span></div>
           <div class="goal-row" id="goalRow"></div>
           <div class="gen-wrap">
-            <button class="gen-btn" id="genBtn" disabled onclick="generateRecipe()">✨ AI менен рецепт түзүү</button>
+            <button class="gen-btn" id="genBtn" disabled onclick="generateRecipe()">🌐 AI менен рецепт түзүү</button>
             <div class="gen-note" id="genNote"></div>
           </div>
         </div>
-
       </div>
     </div>
     <div class="recipe-section" id="recipeSection"></div>
   </div>
 
-  <!-- ══ FAVOURITES TAB ══ -->
-  <div class="tab-content" id="tab-favourites">
-    <div class="favs-grid" id="favsGrid"></div>
-  </div>
-
-  <!-- ══ TIPS TAB ══ -->
-  <div class="tab-content" id="tab-tips">
-    <div class="tips-grid" id="tipsGrid"></div>
-  </div>
-
+  <div class="tab-content" id="tab-favourites"><div class="favs-grid" id="favsGrid"></div></div>
+  <div class="tab-content" id="tab-tips"><div class="tips-grid" id="tipsGrid"></div></div>
 </div>
 
-<!-- ══ FOOTER ══ -->
 <div class="footer">
   <div class="footer-inner">
     <div class="footer-logos">
@@ -660,176 +551,10 @@ body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-he
 </div>
 
 <script>
-// ══════════════════════════════════════════════════════════════════
-// DEFAULT DATA
-// ══════════════════════════════════════════════════════════════════
-const DEF_CATS = {
-  "🥩 Эт":[
-    {e:"🐑",n:"Козу эти",c:172,p:17,f:11,ca:0,g:200},
-    {e:"🐄",n:"Уй эти (арык)",c:158,p:26,f:6,ca:0,g:200},
-    {e:"🐄",n:"Уй эти (майлуу)",c:250,p:17,f:21,ca:0,g:200},
-    {e:"🐎",n:"Жылкы эти",c:143,p:21,f:5,ca:1,g:200},
-    {e:"🐎",n:"Казы",c:389,p:13,f:37,ca:0,g:150},
-    {e:"🐔",n:"Тоок эти (кеуде)",c:165,p:31,f:4,ca:0,g:200},
-    {e:"🐔",n:"Тоок эти (бут)",c:172,p:20,f:10,ca:0,g:200},
-    {e:"🦆",n:"Өрдөк эти",c:201,p:23,f:12,ca:0,g:200},
-    {e:"🐑",n:"Козу боору",c:108,p:20,f:3,ca:0,g:150},
-    {e:"🐄",n:"Уй жүрөгү",c:112,p:17,f:4,ca:1,g:150},
-    {e:"🐄",n:"Уй боору",c:125,p:20,f:4,ca:4,g:150},
-  ],
-  "🐟 Балык":[
-    {e:"🐟",n:"Форель (Ысык-Көл)",c:119,p:20,f:4,ca:0,g:200},
-    {e:"🐠",n:"Сазан",c:97,p:18,f:2,ca:1,g:200},
-    {e:"🐡",n:"Чебак",c:88,p:19,f:1,ca:0,g:200},
-    {e:"🐟",n:"Маринка",c:95,p:17,f:2,ca:0,g:200},
-    {e:"🐟",n:"Осман",c:102,p:18,f:3,ca:0,g:200},
-    {e:"🦐",n:"Креветка",c:99,p:24,f:1,ca:0,g:150},
-  ],
-  "🥛 Сүт өнүмдөрү":[
-    {e:"🥛",n:"Сиир сүтү",c:61,p:3,f:3,ca:5,g:200},
-    {e:"🍶",n:"Кымыз",c:50,p:2,f:2,ca:5,g:200},
-    {e:"🍶",n:"Айран",c:57,p:3,f:2,ca:6,g:200},
-    {e:"🍶",n:"Катык",c:60,p:3,f:3,ca:5,g:150},
-    {e:"🧀",n:"Курут (кургак)",c:260,p:22,f:12,ca:20,g:30},
-    {e:"🧀",n:"Жергиликтүү сыр",c:350,p:26,f:27,ca:0,g:50},
-    {e:"🍦",n:"Каймак",c:260,p:3,f:25,ca:4,g:30},
-    {e:"🧈",n:"Сарымай",c:717,p:1,f:81,ca:0,g:20},
-    {e:"🥚",n:"Тоок жумурткасы",c:155,p:13,f:11,ca:1,g:55},
-    {e:"🥚",n:"Өрдөк жумурткасы",c:185,p:13,f:14,ca:1,g:70},
-  ],
-  "🌾 Дан жана буурчак":[
-    {e:"🌾",n:"Буудай уну (1-сорт)",c:364,p:10,f:1,ca:76,g:200},
-    {e:"🌾",n:"Там буудай уну",c:340,p:11,f:2,ca:70,g:200},
-    {e:"🌱",n:"Тарыкоон (пшено)",c:207,p:6,f:2,ca:43,g:100},
-    {e:"🍚",n:"Ак күрүч",c:130,p:3,f:0,ca:28,g:100},
-    {e:"🍚",n:"Бурул күрүч",c:111,p:3,f:1,ca:23,g:100},
-    {e:"🌾",n:"Гречка",c:343,p:13,f:3,ca:71,g:100},
-    {e:"🌾",n:"Сулу жармасы",c:389,p:17,f:7,ca:66,g:80},
-    {e:"🌾",n:"Арпа жармасы",c:354,p:12,f:2,ca:73,g:100},
-    {e:"🌽",n:"Жүгөрү жармасы",c:342,p:8,f:4,ca:70,g:100},
-    {e:"🫘",n:"Кызыл буурчак",c:127,p:9,f:0,ca:23,g:100},
-    {e:"🫘",n:"Ак буурчак",c:139,p:9,f:1,ca:25,g:100},
-    {e:"🫛",n:"Маш",c:105,p:7,f:0,ca:19,g:100},
-    {e:"🫛",n:"Ноок (жашыл)",c:81,p:5,f:0,ca:14,g:100},
-    {e:"🌾",n:"Нут (жашич буурчак)",c:164,p:9,f:3,ca:27,g:100},
-  ],
-  "🥦 Жашылчалар":[
-    {e:"🥔",n:"Картошка",c:77,p:2,f:0,ca:17,g:200},
-    {e:"🥕",n:"Сабиз",c:41,p:1,f:0,ca:10,g:100},
-    {e:"🧅",n:"Пияз (ак)",c:40,p:1,f:0,ca:9,g:80},
-    {e:"🧅",n:"Пияз (кызыл)",c:42,p:1,f:0,ca:10,g:80},
-    {e:"🧄",n:"Сарымсак",c:149,p:6,f:1,ca:33,g:10},
-    {e:"🍅",n:"Помидор",c:18,p:1,f:0,ca:4,g:150},
-    {e:"🥒",n:"Кияр",c:15,p:1,f:0,ca:3,g:100},
-    {e:"🫑",n:"Болгар калемпири (кызыл)",c:31,p:1,f:0,ca:7,g:100},
-    {e:"🫑",n:"Болгар калемпири (жашыл)",c:20,p:1,f:0,ca:5,g:100},
-    {e:"🥬",n:"Ак кочкор (капуста)",c:27,p:1,f:0,ca:6,g:150},
-    {e:"🥬",n:"Кызыл калем",c:31,p:2,f:0,ca:7,g:150},
-    {e:"🥦",n:"Брокколи",c:34,p:3,f:0,ca:7,g:150},
-    {e:"🥦",n:"Карнабошка (кочкор)",c:25,p:2,f:0,ca:5,g:150},
-    {e:"🍆",n:"Баклажан",c:25,p:1,f:0,ca:6,g:150},
-    {e:"🎃",n:"Кадак (тыква)",c:26,p:1,f:0,ca:7,g:200},
-    {e:"🫛",n:"Жашыл буурчак",c:31,p:2,f:0,ca:7,g:100},
-    {e:"🌿",n:"Шпинат",c:23,p:3,f:0,ca:4,g:80},
-    {e:"🥒",n:"Кабачок",c:17,p:1,f:0,ca:3,g:150},
-    {e:"🫚",n:"Свёкла",c:43,p:2,f:0,ca:10,g:150},
-    {e:"🌽",n:"Жүгөрү (жаш)",c:86,p:3,f:1,ca:19,g:150},
-    {e:"🥗",n:"Редиска",c:16,p:1,f:0,ca:3,g:60},
-    {e:"🥒",n:"Ачуу кияр (корнишон)",c:13,p:1,f:0,ca:3,g:50},
-  ],
-  "🌿 Жашылчалар жана чөп":[
-    {e:"🌿",n:"Кинза (кориандр)",c:23,p:2,f:1,ca:4,g:15},
-    {e:"🌿",n:"Укроп",c:43,p:3,f:1,ca:7,g:15},
-    {e:"🌿",n:"Петрушка",c:36,p:3,f:1,ca:6,g:15},
-    {e:"🌿",n:"Базилик",c:23,p:3,f:1,ca:3,g:10},
-    {e:"🌿",n:"Жалбырак (жашыл)",c:5,p:0,f:0,ca:1,g:10},
-    {e:"🌿",n:"Ичегей жашыл (зеленый лук)",c:32,p:2,f:0,ca:7,g:20},
-    {e:"🌿",n:"Руккола",c:25,p:3,f:1,ca:3,g:40},
-    {e:"🌿",n:"Мята",c:70,p:4,f:1,ca:15,g:5},
-    {e:"🌿",n:"Кычы (крапива)",c:36,p:4,f:1,ca:7,g:30},
-    {e:"🫚",n:"Имбирь",c:80,p:2,f:1,ca:18,g:10},
-    {e:"🌿",n:"Сельдерей (жашыл)",c:14,p:1,f:0,ca:3,g:60},
-    {e:"🌿",n:"Аспарагус",c:20,p:2,f:0,ca:4,g:100},
-  ],
-  "🍎 Мөмө-жемиш":[
-    {e:"🍎",n:"Алма (жергиликтүү)",c:52,p:0,f:0,ca:14,g:150},
-    {e:"🍇",n:"Жүзүм",c:69,p:1,f:0,ca:18,g:100},
-    {e:"🍑",n:"Шабдалы",c:39,p:1,f:0,ca:10,g:120},
-    {e:"🍒",n:"Гилас",c:50,p:1,f:0,ca:12,g:100},
-    {e:"🍐",n:"Алмурут",c:57,p:0,f:0,ca:15,g:150},
-    {e:"🍈",n:"Дыня",c:28,p:1,f:0,ca:7,g:200},
-    {e:"🍉",n:"Карбыз",c:30,p:1,f:0,ca:8,g:250},
-    {e:"🫐",n:"Каркат (смородина)",c:63,p:1,f:0,ca:15,g:80},
-    {e:"🍓",n:"Кулпунай",c:32,p:1,f:0,ca:8,g:100},
-    {e:"🍑",n:"Өрүк (курага)",c:241,p:3,f:0,ca:63,g:50},
-    {e:"🍋",n:"Лимон",c:29,p:1,f:0,ca:9,g:30},
-    {e:"🍊",n:"Мандарин",c:53,p:1,f:0,ca:13,g:100},
-    {e:"🍎",n:"Айва",c:57,p:0,f:0,ca:15,g:100},
-    {e:"🫐",n:"Шиповник (свежий)",c:51,p:1,f:0,ca:14,g:50},
-  ],
-  "🌰 Жаңгак жана урук":[
-    {e:"🌰",n:"Жаңгак",c:654,p:15,f:65,ca:14,g:30},
-    {e:"🥜",n:"Жер жаңгак",c:567,p:26,f:49,ca:16,g:30},
-    {e:"🌻",n:"Күн карама уруктары",c:584,p:21,f:51,ca:20,g:25},
-    {e:"🌿",n:"Кунжут",c:573,p:18,f:50,ca:23,g:15},
-    {e:"🫘",n:"Кабак уруктары",c:559,p:30,f:49,ca:11,g:25},
-    {e:"🌰",n:"Бадам",c:579,p:21,f:50,ca:22,g:30},
-    {e:"🌰",n:"Кешью",c:553,p:18,f:44,ca:33,g:30},
-    {e:"🌿",n:"Зыгыр уруктары (лён)",c:534,p:18,f:42,ca:29,g:15},
-    {e:"🌿",n:"Чиа уруктары",c:486,p:17,f:31,ca:42,g:15},
-  ],
-  "🧂 Даамдаткычтар":[
-    {e:"🧂",n:"Туз",c:0,p:0,f:0,ca:0,g:3},
-    {e:"⭐",n:"Кара мурч",c:251,p:10,f:3,ca:64,g:2},
-    {e:"⭐",n:"Зира",c:375,p:18,f:22,ca:45,g:3},
-    {e:"⭐",n:"Куркума",c:354,p:8,f:10,ca:65,g:3},
-    {e:"⭐",n:"Паприка",c:282,p:14,f:13,ca:54,g:3},
-    {e:"⭐",n:"Кориандр (кургак)",c:298,p:12,f:18,ca:55,g:3},
-    {e:"⭐",n:"Карри",c:325,p:14,f:14,ca:58,g:3},
-    {e:"🌶️",n:"Кызыл мурч (кургак)",c:318,p:12,f:17,ca:57,g:2},
-    {e:"⭐",n:"Дарчын (корица)",c:247,p:4,f:1,ca:81,g:2},
-    {e:"🍃",n:"Лавр жалбырагы",c:313,p:8,f:8,ca:75,g:1},
-  ],
-  "🫒 Май жана соус":[
-    {e:"🌻",n:"Күн карама майы",c:884,p:0,f:100,ca:0,g:15},
-    {e:"🫒",n:"Зытун майы (оливковое)",c:884,p:0,f:100,ca:0,g:15},
-    {e:"🫒",n:"Кара зытун (оливки)",c:115,p:1,f:11,ca:6,g:30},
-    {e:"🥜",n:"Жер жаңгак майы",c:884,p:0,f:100,ca:0,g:15},
-    {e:"🌿",n:"Зыгыр майы (льняное)",c:884,p:0,f:100,ca:0,g:10},
-    {e:"🧈",n:"Сарымай (бышыруу)",c:717,p:1,f:81,ca:0,g:15},
-    {e:"🌿",n:"Кокос майы",c:862,p:0,f:100,ca:0,g:15},
-    {e:"🍯",n:"Бал",c:304,p:0,f:0,ca:82,g:20},
-    {e:"🍋",n:"Лимон ширеси",c:22,p:0,f:0,ca:7,g:15},
-    {e:"🧄",n:"Соя соусу",c:60,p:6,f:0,ca:8,g:15},
-    {e:"🌿",n:"Кунжут майы",c:884,p:0,f:100,ca:0,g:10},
-  ],
-};
+const DEF_CATS={"🥩 Эт":[{e:"🐑",n:"Козу эти",c:172,p:17,f:11,ca:0,g:200},{e:"🐄",n:"Уй эти (арык)",c:158,p:26,f:6,ca:0,g:200},{e:"🐎",n:"Жылкы эти",c:143,p:21,f:5,ca:1,g:200},{e:"🐎",n:"Казы",c:389,p:13,f:37,ca:0,g:150},{e:"🐔",n:"Тоок эти (кеуде)",c:165,p:31,f:4,ca:0,g:200},{e:"🐔",n:"Тоок эти (бут)",c:172,p:20,f:10,ca:0,g:200},{e:"🦆",n:"Өрдөк эти",c:201,p:23,f:12,ca:0,g:200},{e:"🐑",n:"Козу боору",c:108,p:20,f:3,ca:0,g:150},{e:"🐄",n:"Уй жүрөгү",c:112,p:17,f:4,ca:1,g:150},{e:"🐄",n:"Уй боору",c:125,p:20,f:4,ca:4,g:150}],"🐟 Балык":[{e:"🐟",n:"Форель (Ысык-Көл)",c:119,p:20,f:4,ca:0,g:200},{e:"🐠",n:"Сазан",c:97,p:18,f:2,ca:1,g:200},{e:"🐡",n:"Чебак",c:88,p:19,f:1,ca:0,g:200},{e:"🐟",n:"Маринка",c:95,p:17,f:2,ca:0,g:200},{e:"🐟",n:"Осман",c:102,p:18,f:3,ca:0,g:200}],"🥛 Сүт өнүмдөрү":[{e:"🥛",n:"Сиир сүтү",c:61,p:3,f:3,ca:5,g:200},{e:"🍶",n:"Кымыз",c:50,p:2,f:2,ca:5,g:200},{e:"🍶",n:"Айран",c:57,p:3,f:2,ca:6,g:200},{e:"🍶",n:"Катык",c:60,p:3,f:3,ca:5,g:150},{e:"🧀",n:"Курут (кургак)",c:260,p:22,f:12,ca:20,g:30},{e:"🧀",n:"Жергиликтүү сыр",c:350,p:26,f:27,ca:0,g:50},{e:"🍦",n:"Каймак",c:260,p:3,f:25,ca:4,g:30},{e:"🧈",n:"Сарымай",c:717,p:1,f:81,ca:0,g:20},{e:"🥚",n:"Тоок жумурткасы",c:155,p:13,f:11,ca:1,g:55},{e:"🥚",n:"Өрдөк жумурткасы",c:185,p:13,f:14,ca:1,g:70}],"🌾 Дан жана буурчак":[{e:"🌾",n:"Буудай уну (1-сорт)",c:364,p:10,f:1,ca:76,g:200},{e:"🌾",n:"Там буудай уну",c:340,p:11,f:2,ca:70,g:200},{e:"🌱",n:"Тарыкоон (пшено)",c:207,p:6,f:2,ca:43,g:100},{e:"🍚",n:"Ак күрүч",c:130,p:3,f:0,ca:28,g:100},{e:"🍚",n:"Бурул күрүч",c:111,p:3,f:1,ca:23,g:100},{e:"🌾",n:"Гречка",c:343,p:13,f:3,ca:71,g:100},{e:"🌾",n:"Сулу жармасы",c:389,p:17,f:7,ca:66,g:80},{e:"🌾",n:"Арпа жармасы",c:354,p:12,f:2,ca:73,g:100},{e:"🫘",n:"Кызыл буурчак",c:127,p:9,f:0,ca:23,g:100},{e:"🫘",n:"Ак буурчак",c:139,p:9,f:1,ca:25,g:100},{e:"🫛",n:"Маш",c:105,p:7,f:0,ca:19,g:100},{e:"🫛",n:"Ноок (жашыл)",c:81,p:5,f:0,ca:14,g:100},{e:"🌾",n:"Нут",c:164,p:9,f:3,ca:27,g:100}],"🥦 Жашылчалар":[{e:"🥔",n:"Картошка",c:77,p:2,f:0,ca:17,g:200},{e:"🥕",n:"Сабиз",c:41,p:1,f:0,ca:10,g:100},{e:"🧅",n:"Пияз (ак)",c:40,p:1,f:0,ca:9,g:80},{e:"🧅",n:"Пияз (кызыл)",c:42,p:1,f:0,ca:10,g:80},{e:"🧄",n:"Сарымсак",c:149,p:6,f:1,ca:33,g:10},{e:"🍅",n:"Помидор",c:18,p:1,f:0,ca:4,g:150},{e:"🥒",n:"Кияр",c:15,p:1,f:0,ca:3,g:100},{e:"🫑",n:"Болгар калемпири (кызыл)",c:31,p:1,f:0,ca:7,g:100},{e:"🫑",n:"Болгар калемпири (жашыл)",c:20,p:1,f:0,ca:5,g:100},{e:"🥬",n:"Ак кочкор (капуста)",c:27,p:1,f:0,ca:6,g:150},{e:"🥬",n:"Кызыл калем",c:31,p:2,f:0,ca:7,g:150},{e:"🥦",n:"Брокколи",c:34,p:3,f:0,ca:7,g:150},{e:"🍆",n:"Баклажан",c:25,p:1,f:0,ca:6,g:150},{e:"🎃",n:"Кадак (тыква)",c:26,p:1,f:0,ca:7,g:200},{e:"🫛",n:"Жашыл буурчак",c:31,p:2,f:0,ca:7,g:100},{e:"🌿",n:"Шпинат",c:23,p:3,f:0,ca:4,g:80},{e:"🥒",n:"Кабачок",c:17,p:1,f:0,ca:3,g:150},{e:"🫚",n:"Свёкла",c:43,p:2,f:0,ca:10,g:150},{e:"🌽",n:"Жүгөрү (жаш)",c:86,p:3,f:1,ca:19,g:150},{e:"🥗",n:"Редиска",c:16,p:1,f:0,ca:3,g:60}],"🌿 Жашылча жана чөп":[{e:"🌿",n:"Кинза",c:23,p:2,f:1,ca:4,g:15},{e:"🌿",n:"Укроп",c:43,p:3,f:1,ca:7,g:15},{e:"🌿",n:"Петрушка",c:36,p:3,f:1,ca:6,g:15},{e:"🌿",n:"Базилик",c:23,p:3,f:1,ca:3,g:10},{e:"🌿",n:"Жалбырак (жашыл)",c:5,p:0,f:0,ca:1,g:10},{e:"🌿",n:"Ичегей жашыл",c:32,p:2,f:0,ca:7,g:20},{e:"🌿",n:"Руккола",c:25,p:3,f:1,ca:3,g:40},{e:"🌿",n:"Мята",c:70,p:4,f:1,ca:15,g:5},{e:"🌿",n:"Кычы (крапива)",c:36,p:4,f:1,ca:7,g:30},{e:"🫚",n:"Имбирь",c:80,p:2,f:1,ca:18,g:10},{e:"🌿",n:"Сельдерей",c:14,p:1,f:0,ca:3,g:60}],"🍎 Мөмө-жемиш":[{e:"🍎",n:"Алма (жергиликтүү)",c:52,p:0,f:0,ca:14,g:150},{e:"🍇",n:"Жүзүм",c:69,p:1,f:0,ca:18,g:100},{e:"🍑",n:"Шабдалы",c:39,p:1,f:0,ca:10,g:120},{e:"🍒",n:"Гилас",c:50,p:1,f:0,ca:12,g:100},{e:"🍐",n:"Алмурут",c:57,p:0,f:0,ca:15,g:150},{e:"🍈",n:"Дыня",c:28,p:1,f:0,ca:7,g:200},{e:"🍉",n:"Карбыз",c:30,p:1,f:0,ca:8,g:250},{e:"🫐",n:"Каркат",c:63,p:1,f:0,ca:15,g:80},{e:"🍓",n:"Кулпунай",c:32,p:1,f:0,ca:8,g:100},{e:"🍑",n:"Өрүк (курага)",c:241,p:3,f:0,ca:63,g:50},{e:"🍋",n:"Лимон",c:29,p:1,f:0,ca:9,g:30}],"🌰 Жаңгак жана урук":[{e:"🌰",n:"Жаңгак",c:654,p:15,f:65,ca:14,g:30},{e:"🥜",n:"Жер жаңгак",c:567,p:26,f:49,ca:16,g:30},{e:"🌻",n:"Күн карама уруктары",c:584,p:21,f:51,ca:20,g:25},{e:"🌿",n:"Кунжут",c:573,p:18,f:50,ca:23,g:15},{e:"🫘",n:"Кабак уруктары",c:559,p:30,f:49,ca:11,g:25},{e:"🌰",n:"Бадам",c:579,p:21,f:50,ca:22,g:30},{e:"🌰",n:"Кешью",c:553,p:18,f:44,ca:33,g:30},{e:"🌿",n:"Зыгыр уруктары",c:534,p:18,f:42,ca:29,g:15},{e:"🌿",n:"Чиа уруктары",c:486,p:17,f:31,ca:42,g:15}],"🧂 Даамдаткычтар":[{e:"🧂",n:"Туз",c:0,p:0,f:0,ca:0,g:3},{e:"⭐",n:"Кара мурч",c:251,p:10,f:3,ca:64,g:2},{e:"⭐",n:"Зира",c:375,p:18,f:22,ca:45,g:3},{e:"⭐",n:"Куркума",c:354,p:8,f:10,ca:65,g:3},{e:"⭐",n:"Паприка",c:282,p:14,f:13,ca:54,g:3},{e:"⭐",n:"Карри",c:325,p:14,f:14,ca:58,g:3},{e:"⭐",n:"Кориандр (кургак)",c:298,p:12,f:18,ca:55,g:3},{e:"⭐",n:"Дарчын",c:247,p:4,f:1,ca:81,g:2},{e:"🍃",n:"Лавр жалбырагы",c:313,p:8,f:8,ca:75,g:1},{e:"🌶️",n:"Кызыл мурч",c:318,p:12,f:17,ca:57,g:2}],"🫒 Май жана соус":[{e:"🌻",n:"Күн карама майы",c:884,p:0,f:100,ca:0,g:15},{e:"🫒",n:"Зытун майы (оливковое)",c:884,p:0,f:100,ca:0,g:15},{e:"🫒",n:"Кара зытун (оливки)",c:115,p:1,f:11,ca:6,g:30},{e:"🥜",n:"Жер жаңгак майы",c:884,p:0,f:100,ca:0,g:15},{e:"🌿",n:"Зыгыр майы",c:884,p:0,f:100,ca:0,g:10},{e:"🧈",n:"Сарымай (бышыруу)",c:717,p:1,f:81,ca:0,g:15},{e:"🌿",n:"Кокос майы",c:862,p:0,f:100,ca:0,g:15},{e:"🍯",n:"Бал",c:304,p:0,f:0,ca:82,g:20},{e:"🍋",n:"Лимон ширеси",c:22,p:0,f:0,ca:7,g:15},{e:"🌿",n:"Кунжут майы",c:884,p:0,f:100,ca:0,g:10}]};
+const DEF_GOALS={balance:{label:"⚖️ Туура тамак",note:"Туура жана саламаттыкка пайдалуу. Майды жана туузду аз кол."},lose:{label:"🔥 Арыктоо",note:"Калориясы аз, белогу көп. Майды минималдуу кол."},muscle:{label:"💪 Булчуң",note:"Белогу жогору. Булчуң өстүрүү үчүн."},diabetes:{label:"🩺 Диабет",note:"Кант жана тез углеводдор болбосун. Гликемиялык индекс төмөн."},senior:{label:"🌿 50+ Улулу",note:"50 жаштан өткөндөр үчүн. Кальций, магний, В12, D витамин бай болсун. Жүрөккө пайдалуу."},pregnancy:{label:"🤱 Кош бойлуулук",note:"Фолий кислотасы, кальций, темир жана витаминдерге бай болсун."}};
+const TIPS=[{icon:"🥗",title:"Тамак жарымы жашылча болсун",text:"Диетологдордун сунушу боюнча ар бир тамактын жарымы жашылча болушу керек. Бул витамин жана минералдарды жеткиликтүү алууга жардам берет."},{icon:"💧",title:"Суу ичүүнү унутпаңыз",text:"Күнүнө 1.5–2 литр таза суу ичиңиз. Тамактан 30 мин мурун бир стакан суу ичиңиз."},{icon:"🌿",title:"Жергиликтүү продуктулар — эң жакшысы",text:"Кыргызстандын жергиликтүү продуктулары сезондук, таза жана химикатсыз. Айыл базарынан алган продукт супермаркеттен жакшы болот."},{icon:"🔥",title:"Майды аз колдонуңуз",text:"Бышыруу үчүн зытун же күн карама майын колдонуңуз. Күнүнө 2-3 чай кашык (10-15г) жетиштүү."},{icon:"🧂",title:"Туузду азайтыңыз",text:"ДСО сунушу: күнүнө 5г тууздан ашпасын. Курут, сыр, соя соусунда да туз бар."},{icon:"🐑",title:"Жылкы эти — уникалдуу продукт",text:"Казы жана жылкы эти — омега-3 май кислоталарга бай. Кымыз да ферменттелген, ичегиге пайдалуу пробиотик."},{icon:"⏰",title:"Тамак убагында ичиңиз",text:"Эртең менен дасторкон жеңиз — метаболизм жаркырайт. Түнкү 8дон кийин оор тамак жебеңиз."},{icon:"🫘",title:"Буурчак — арзан белок",text:"Кызыл буурчак, маш, ноок — белокко бай, майы аз. Этти толук алмаштыра алат."},{icon:"🌾",title:"Гречка — суперпродукт",text:"Гречка 13% белок камтыйт, глютенсиз. Демир, магний, В витаминдерине бай. Гликемиялык индекси төмөн."},{icon:"🌰",title:"Жаңгак — мээ үчүн",text:"Жаңгак омега-3 май кислотасына абдан бай. Күнүнө 30г — жүрөк-кан тамырды, мээни жакшыртат."},{icon:"🥚",title:"Жумуртка — толук тамак",text:"Жумуртка 13 витаминдин 12син камтыйт. Күнүнө 1-2 жумуртка зыянсыз."},{icon:"🫒",title:"Зытун майы — жүрөккө дарман",text:"Зытун майы мономаюнтуурулган май кислоталарга бай. Бышырбай салатка кошуңуз."}];
 
-const DEF_GOALS = {
-  balance:{label:"⚖️ Туура тамак",note:"Туура жана саламаттыкка пайдалуу тамак. Майды жана туузду аз кол. Баланстуу болсун."},
-  lose:{label:"🔥 Арыктоо",note:"Калориясы аз, белогу көп. Майды минималдуу кол. Арыктоо максатында."},
-  muscle:{label:"💪 Булчуң",note:"Белогу жогору. Булчуң өстүрүү үчүн. Татаал углеводдор болсун."},
-  diabetes:{label:"🩺 Диабет",note:"Кант жана тез углеводдор болбосун. Гликемиялык индекс төмөн."},
-  senior:{label:"🌿 50+ Улулу",note:"50 жаштан өткөн адамдар үчүн. Кальций, магний, В12, D витамин бай болсун. Жүрөккө жана муунга пайдалуу. Асан сиңирилсин."},
-  pregnancy:{label:"🤱 Кош бойлуулук",note:"Фолий кислотасы, кальций, темир жана витаминдерге бай болсун."},
-};
-
-const TIPS = [
-  {icon:"🥗",title:"Тамак жарымы жашылча болсун",text:"Диетологдордун сунушу боюнча ар бир тамактын жарымы жашылча же жашылча болушу керек. Бул витамин жана минералдарды жеткиликтүү алууга жардам берет."},
-  {icon:"💧",title:"Суу ичүүнү унутпаңыз",text:"Күнүнө 1.5–2 литр таза суу ичиңиз. Ашыкча суусузданбай туруу үчүн, тамактан 30 мин мурун бир стакан суу ичиңиз."},
-  {icon:"🌿",title:"Жергиликтүү продукттар — эң жакшысы",text:"Кыргызстандын жергиликтүү продукттары сезондук, таза жана химикатсыз. Айыл базарынан алган продукт супермаркеттен жакшы болот."},
-  {icon:"🔥",title:"Майды аз колдонуңуз",text:"Бышыруу үчүн зытун же күн карама майын колдонуңуз. Күнүнө 2-3 чай кашык (10-15г) жетиштүү. Кошумча май — кошумча калория."},
-  {icon:"🧂",title:"Туузду азайтыңыз",text:"ДСО сунушу: күнүнө 5г тууздан (1 чай кашык) ашпасын. Курут, сыр, соя соусунда да туз бар — аларды эске алыңыз."},
-  {icon:"🐑",title:"Жылкы эти — уникалдуу продукт",text:"Казы жана жылкы эти — омега-3 май кислоталарга бай. Кымыз да ферменттелген, ичегиге пайдалуу пробиотик. Бул кыргыз тамактарынын ажырагыс бөлүгү."},
-  {icon:"⏰",title:"Тамак убагында ичиңиз",text:"Эртең менен дасторкон жеңиз — метаболизм жаркырайт. Түнкү 8дон кийин оор тамак жебеңиз. Тамак аралыгы 3-4 сааттан ашпасын."},
-  {icon:"🫘",title:"Буурчак — арзан белок",text:"Кызыл буурчак, маш, ноок — белокко бай, майы аз. Этти толук алмаштыра алат. Кызыл буурчак темирге да бай — канемоз алдын алат."},
-  {icon:"🌾",title:"Гречка — суперпродукт",text:"Гречка 13% белок камтыйт, жана глютенсиз. Демир, магний, В витаминдерине бай. Диабеттиктер үчүн да жакшы — гликемиялык индекси төмөн."},
-  {icon:"🌰",name:"Жаңгак — мээ үчүн",text:"Жаңгак омега-3 май кислотасына абдан бай. Күнүнө 30г (бир уч толтура) — жүрөк-кан тамырды, мээни жана холестеринди жакшыртат."},
-  {icon:"🥚",title:"Жумуртка — толук тамак",text:"Жумуртка 13 витаминдин 12син камтыйт. Холестерин жөнүндөгү коркунуч ашыкча — изилдөөлөр күнүнө 1-2 жумуртка зыянсыз экенин далилдейт."},
-  {icon:"🫒",title:"Зытун майы — жүрөккө дарман",text:"Зытун майы мономаюнтуурулган май кислоталарга бай — жүрөк-кан тамырды коргойт. Бышырбай — салатка кошуп жеңиз."},
-];
-
-// ══ STORAGE ══
 function loadCats(){try{const s=localStorage.getItem('ky_cats');if(s)return JSON.parse(s);}catch(e){}return JSON.parse(JSON.stringify(DEF_CATS));}
 function saveCats(){localStorage.setItem('ky_cats',JSON.stringify(cats));}
 function loadGoals(){try{const s=localStorage.getItem('ky_goals');if(s)return JSON.parse(s);}catch(e){}return JSON.parse(JSON.stringify(DEF_GOALS));}
@@ -839,417 +564,101 @@ function saveStats(st){localStorage.setItem('ky_stats',JSON.stringify(st));}
 function loadFavs(){try{const s=localStorage.getItem('ky_favs');if(s)return JSON.parse(s);}catch(e){}return [];}
 function saveFavs(f){localStorage.setItem('ky_favs',JSON.stringify(f));}
 
-// ══ STATE ══
-let cats = loadCats();
-let goals = loadGoals();
-let activeCat = Object.keys(cats)[0];
-let selected = {};
-let activeGoal = Object.keys(goals)[0];
-let servings = 2;
-let admCat = Object.keys(cats)[0];
-let searchTerm = '';
-let currentRecipe = null;
+let cats=loadCats(),goals=loadGoals(),activeCat=Object.keys(cats)[0],selected={},activeGoal=Object.keys(goals)[0],servings=2,admCat=Object.keys(cats)[0],searchTerm='',currentRecipe=null;
 
-// ══ ANALYTICS ══
-function trackVisit(){
-  const st=loadStats();
-  st.totalVisits=(st.totalVisits||0)+1;
-  st.sessions=st.sessions||[];
-  st.sessions.unshift({time:new Date().toISOString(),type:'visit'});
-  if(st.sessions.length>100)st.sessions=st.sessions.slice(0,100);
-  saveStats(st);
-}
-function trackRecipe(goal){
-  const st=loadStats();
-  st.totalRecipes=(st.totalRecipes||0)+1;
-  st.lastRecipe=new Date().toISOString();
-  st.sessions=st.sessions||[];
-  st.sessions.unshift({time:new Date().toISOString(),type:'recipe',goal});
-  if(st.sessions.length>100)st.sessions=st.sessions.slice(0,100);
-  const day=new Date().toISOString().slice(0,10);
-  st.recipeDays=st.recipeDays||{};
-  st.recipeDays[day]=(st.recipeDays[day]||0)+1;
-  st.goalCounts=st.goalCounts||{};
-  st.goalCounts[goal]=(st.goalCounts[goal]||0)+1;
-  saveStats(st);
-}
+function trackVisit(){const st=loadStats();st.totalVisits=(st.totalVisits||0)+1;st.sessions=st.sessions||[];st.sessions.unshift({time:new Date().toISOString(),type:'visit'});if(st.sessions.length>100)st.sessions=st.sessions.slice(0,100);saveStats(st);}
+function trackRecipe(goal){const st=loadStats();st.totalRecipes=(st.totalRecipes||0)+1;st.lastRecipe=new Date().toISOString();st.sessions=st.sessions||[];st.sessions.unshift({time:new Date().toISOString(),type:'recipe',goal});if(st.sessions.length>100)st.sessions=st.sessions.slice(0,100);const day=new Date().toISOString().slice(0,10);st.recipeDays=st.recipeDays||{};st.recipeDays[day]=(st.recipeDays[day]||0)+1;st.goalCounts=st.goalCounts||{};st.goalCounts[goal]=(st.goalCounts[goal]||0)+1;saveStats(st);}
 
-// ══ API KEY ══
-function getKey(){return localStorage.getItem('ky_api_key')||'';}
+function getKey(){return localStorage.getItem('ky_or_key')||'';}
 function openApiModal(){document.getElementById('apiModal').classList.remove('hidden');}
 function closeApiModal(){document.getElementById('apiModal').classList.add('hidden');}
 function saveApiKey(){
   const v=document.getElementById('apiKeyInp').value.trim();
-  if(!v.startsWith('sk-ant')){alert('Туура эмес ключ. sk-ant-... менен башталышы керек.');return;}
-  localStorage.setItem('ky_api_key',v);
-  updateTopBar(); closeApiModal();
-  flashMsg('✓ API ключ сакталды! Эми рецепт жасаса болот.');
+  if(!v.startsWith('sk-or')){alert('Туура эмес ключ!\n\nsk-or-v1-... менен башталышы керек.');return;}
+  localStorage.setItem('ky_or_key',v);updateTopBar();closeApiModal();
+  flashMsg('✓ Groq ключи сакталды! Эми рецепт жасаса болот.');
 }
 function updateTopBar(){
   const k=getKey();
   document.getElementById('topDot').className='top-dot'+(k?' ok':'');
-  document.getElementById('topText').textContent=k?'✓ API ключ сакталды — рецепт түзүүгө даяр':'API ключ киргизилген жок';
-  const btn=document.getElementById('topApiBtn');
-  btn.textContent=k?'Ключ өзгөртүү':'Ключ киргизүү';
-  btn.className=k?'top-btn':'top-btn g';
+  document.getElementById('topText').textContent=k?'✓ OpenRouter AI даяр!':'OpenRouter ключ жок — бекер алуу!';
+  const btn=document.getElementById('topApiBtn');btn.textContent=k?'Ключ өзгөртүү':'🌐 Бекер ключ алуу';btn.className=k?'top-btn':'top-btn p';
 }
 
-// ══ FLASH MSG ══
-function flashMsg(msg){
-  const el=document.createElement('div');
-  el.style.cssText='position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#1A1A18;color:#fff;font-size:13px;font-family:Inter,sans-serif;padding:10px 20px;border-radius:24px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.25);animation:fadeUp .3s ease';
-  el.textContent=msg;
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),3000);
-}
+function flashMsg(msg){const el=document.createElement('div');el.style.cssText='position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#1A1A18;color:#fff;font-size:13px;font-family:Inter,sans-serif;padding:10px 20px;border-radius:24px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.25);white-space:nowrap';el.textContent=msg;document.body.appendChild(el);setTimeout(()=>el.remove(),3000);}
 
-// ══ ADMIN ══
-function openAdminLogin(){
-  document.getElementById('adminLoginModal').classList.remove('hidden');
-  document.getElementById('adminPwdInp').value='';
-  document.getElementById('adminErr').style.display='none';
-}
-function checkAdmin(){
-  if(document.getElementById('adminPwdInp').value==='admin2025'){
-    document.getElementById('adminLoginModal').classList.add('hidden');
-    openAdmin();
-  } else {
-    document.getElementById('adminErr').style.display='block';
-  }
-}
-function openAdmin(){
-  refreshStats(); refreshAdmCats(); renderAdmProds(); renderCatTbl(); renderGoalTbl();
-  document.getElementById('adminModal').classList.remove('hidden');
-}
-function adminTab(btn,sec){
-  document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.admin-sec').forEach(s=>s.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('sec-'+sec).classList.add('active');
-}
+function openAdminLogin(){document.getElementById('adminLoginModal').classList.remove('hidden');document.getElementById('adminPwdInp').value='';document.getElementById('adminErr').style.display='none';}
+function checkAdmin(){if(document.getElementById('adminPwdInp').value==='admin2025'){document.getElementById('adminLoginModal').classList.add('hidden');refreshStats();refreshAdmCats();renderAdmProds();renderCatTbl();renderGoalTbl();document.getElementById('adminModal').classList.remove('hidden');}else{document.getElementById('adminErr').style.display='block';}}
+function adminTab(btn,sec){document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.admin-sec').forEach(s=>s.classList.remove('active'));btn.classList.add('active');document.getElementById('sec-'+sec).classList.add('active');}
 
-// ══ STATS ══
-function refreshStats(){
-  const st=loadStats();
-  const todayKey=new Date().toISOString().slice(0,10);
-  const todayCount=(st.recipeDays||{})[todayKey]||0;
-  const totalProds=Object.values(cats).reduce((a,c)=>a+c.length,0);
-  document.getElementById('statsGrid').innerHTML=[
-    {v:st.totalVisits||0,l:'Жалпы кирүүлөр',s:'Ушул браузерде',color:'var(--green)'},
-    {v:st.totalRecipes||0,l:'Рецепт жасалды',s:'Жалпы саны',color:'var(--amber)'},
-    {v:todayCount,l:'Бүгүн рецепт',s:new Date().toLocaleDateString('ru-RU'),color:'var(--blue)'},
-    {v:loadFavs().length,l:'Сакталган рецепт',s:'Жакшы көргөндөр',color:'#C49A1A'},
-    {v:Object.keys(cats).length,l:'Категория',s:'',color:'var(--green)'},
-    {v:totalProds,l:'Продуктулар',s:'Жалпы',color:'var(--green)'},
-  ].map(x=>`<div class="stat-card" style="border-left:3px solid ${x.color}"><div class="stat-val">${x.v}</div><div class="stat-lbl">${x.l}</div>${x.s?`<div class="stat-sub">${x.s}</div>`:''}</div>`).join('');
+function refreshStats(){const st=loadStats();const todayKey=new Date().toISOString().slice(0,10);const todayCount=(st.recipeDays||{})[todayKey]||0;const totalProds=Object.values(cats).reduce((a,c)=>a+c.length,0);document.getElementById('statsGrid').innerHTML=[{v:st.totalVisits||0,l:'Жалпы кирүүлөр',s:'Ушул браузерде',col:'var(--green)'},{v:st.totalRecipes||0,l:'Рецепт жасалды',s:'Жалпы',col:'var(--amber)'},{v:todayCount,l:'Бүгүн рецепт',s:new Date().toLocaleDateString('ru-RU'),col:'var(--blue)'},{v:loadFavs().length,l:'Сакталган',s:'',col:'#C49A1A'},{v:Object.keys(cats).length,l:'Категория',s:'',col:'var(--green)'},{v:totalProds,l:'Продуктулар',s:'Жалпы',col:'var(--green)'}].map(x=>`<div class="stat-card" style="border-left:3px solid ${x.col}"><div class="stat-val">${x.v}</div><div class="stat-lbl">${x.l}</div>${x.s?`<div class="stat-sub">${x.s}</div>`:''}</div>`).join('');const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);days.push(d.toISOString().slice(0,10));}const dayVals=days.map(d=>(st.recipeDays||{})[d]||0);const maxDV=Math.max(...dayVals,1);document.getElementById('chartDays').innerHTML=days.map((d,i)=>{const lbl=new Date(d).toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'});return`<div class="bar-row"><span class="bar-lbl">${lbl}</span><div class="bar-track"><div class="bar-fill" style="width:${(dayVals[i]/maxDV*100).toFixed(0)}%"></div></div><span class="bar-val">${dayVals[i]}</span></div>`;}).join('');const gc=st.goalCounts||{};const gKeys=Object.keys(gc).sort((a,b)=>gc[b]-gc[a]).slice(0,6);const maxG=Math.max(...gKeys.map(k=>gc[k]),1);document.getElementById('chartGoals').innerHTML=gKeys.length?gKeys.map(k=>`<div class="bar-row"><span class="bar-lbl">${(goals[k]||{label:k}).label.replace(/\p{Emoji}/gu,'').trim()}</span><div class="bar-track"><div class="bar-fill" style="width:${(gc[k]/maxG*100).toFixed(0)}%"></div></div><span class="bar-val">${gc[k]}</span></div>`).join(''):'<div style="font-size:12px;color:var(--text3);padding:.5rem">Маалымат жок</div>';const sessions=(st.sessions||[]).slice(0,10);document.getElementById('actList').innerHTML=sessions.length?sessions.map(s=>`<div class="act-item"><span>${s.type==='recipe'?'🍳':'👁'} ${s.type==='recipe'?'Рецепт':'Кирүү'}${s.goal?' — '+(goals[s.goal]||{label:s.goal}).label:''}</span><span class="act-time">${fmtTime(s.time)}</span></div>`).join(''):'<div style="font-size:13px;color:var(--text3);text-align:center;padding:1rem">Маалымат жок</div>';}
+function exportStats(){const st=loadStats();const blob=new Blob([JSON.stringify(st,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='salamattyk_stats.json';a.click();}
+function fmtTime(iso){if(!iso)return'—';const d=new Date(iso);return d.toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});}
 
-  // Days chart
-  const days=[];
-  for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);days.push(d.toISOString().slice(0,10));}
-  const dayVals=days.map(d=>(st.recipeDays||{})[d]||0);
-  const maxDV=Math.max(...dayVals,1);
-  document.getElementById('chartDays').innerHTML=days.map((d,i)=>{
-    const lbl=new Date(d).toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'});
-    return `<div class="bar-row"><span class="bar-lbl">${lbl}</span><div class="bar-track"><div class="bar-fill" style="width:${(dayVals[i]/maxDV*100).toFixed(0)}%"></div></div><span class="bar-val">${dayVals[i]}</span></div>`;
-  }).join('');
-
-  // Goals chart
-  const gc=st.goalCounts||{};
-  const gKeys=Object.keys(gc).sort((a,b)=>gc[b]-gc[a]).slice(0,6);
-  const maxG=Math.max(...gKeys.map(k=>gc[k]),1);
-  document.getElementById('chartGoals').innerHTML=gKeys.length
-    ? gKeys.map(k=>`<div class="bar-row"><span class="bar-lbl">${(goals[k]||{label:k}).label.replace(/[^\w\s+]/gu,'').trim()}</span><div class="bar-track"><div class="bar-fill" style="width:${(gc[k]/maxG*100).toFixed(0)}%"></div></div><span class="bar-val">${gc[k]}</span></div>`).join('')
-    : '<div style="font-size:12px;color:var(--text3);padding:.5rem">Маалымат жок</div>';
-
-  // Activity
-  const sessions=(st.sessions||[]).slice(0,12);
-  document.getElementById('actList').innerHTML=sessions.length
-    ? sessions.map((s,i)=>`<div class="act-item">
-        <span>${s.type==='recipe'?'🍳':'👁'} ${s.type==='recipe'?'Рецепт жасалды':'Конструктор ачылды'}${s.goal?' — '+(goals[s.goal]||{label:s.goal}).label:''}</span>
-        <span class="act-time">${fmtTime(s.time)}</span>
-      </div>`).join('')
-    : '<div style="font-size:13px;color:var(--text3);text-align:center;padding:1rem">Маалымат жок</div>';
-}
-
-function exportStats(){
-  const st=loadStats();
-  const blob=new Blob([JSON.stringify(st,null,2)],{type:'application/json'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download='salamattyk_stats.json';a.click();
-}
-
-function fmtTime(iso){
-  if(!iso)return'—';
-  const d=new Date(iso);
-  return d.toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
-}
-
-// ══ ADMIN PRODUCTS ══
-function refreshAdmCats(){
-  document.getElementById('admCatRow').innerHTML=Object.keys(cats).map(k=>
-    `<button class="adm-cat-btn ${k===admCat?'active':''}" onclick="setAdmCat(\`${k}\`)">${k}</button>`
-  ).join('');
-}
+function refreshAdmCats(){document.getElementById('admCatRow').innerHTML=Object.keys(cats).map(k=>`<button class="adm-cat-btn ${k===admCat?'active':''}" onclick="setAdmCat(\`${k}\`)">${k}</button>`).join('');}
 function setAdmCat(c){admCat=c;refreshAdmCats();renderAdmProds();}
-function renderAdmProds(){
-  document.getElementById('admProdTbl').innerHTML=(cats[admCat]||[]).map((p,i)=>`<tr>
-    <td><input class="t-inp" style="width:40px" value="${p.e}" onchange="cats['${admCat}'][${i}].e=this.value;markDirty('prod')"/></td>
-    <td><input class="t-inp" value="${p.n}" onchange="cats['${admCat}'][${i}].n=this.value;markDirty('prod')"/></td>
-    <td><input class="t-inp" type="number" value="${p.c}" onchange="cats['${admCat}'][${i}].c=+this.value;markDirty('prod')"/></td>
-    <td><input class="t-inp" type="number" value="${p.p}" onchange="cats['${admCat}'][${i}].p=+this.value;markDirty('prod')"/></td>
-    <td><input class="t-inp" type="number" value="${p.f}" onchange="cats['${admCat}'][${i}].f=+this.value;markDirty('prod')"/></td>
-    <td><input class="t-inp" type="number" value="${p.ca}" onchange="cats['${admCat}'][${i}].ca=+this.value;markDirty('prod')"/></td>
-    <td><input class="t-inp" type="number" value="${p.g||100}" onchange="cats['${admCat}'][${i}].g=+this.value;markDirty('prod')"/></td>
-    <td><button class="del-btn" onclick="cats['${admCat}'].splice(${i},1);renderAdmProds();markDirty('prod')">✕</button></td>
-  </tr>`).join('');
-}
-function addProd(){
-  const e=document.getElementById('np_e').value.trim()||'🥬';
-  const n=document.getElementById('np_n').value.trim();
-  if(!n){alert('Аты жазылган жок');return;}
-  cats[admCat].push({e,n,c:+document.getElementById('np_c').value||0,p:+document.getElementById('np_p').value||0,f:+document.getElementById('np_f').value||0,ca:+document.getElementById('np_ca').value||0,g:+document.getElementById('np_g').value||100});
-  renderAdmProds(); markDirty('prod');
-  ['np_e','np_n','np_c','np_p','np_f','np_ca','np_g'].forEach(id=>document.getElementById(id).value='');
-}
-function renderCatTbl(){
-  document.getElementById('catTbl').innerHTML=Object.keys(cats).map(k=>`<tr>
-    <td><input class="t-inp" value="${k}" onblur="renameC('${k}',this.value)"/></td>
-    <td style="color:var(--text3)">${(cats[k]||[]).length}</td>
-    <td><button class="del-btn" onclick="if(confirm('Өчүрүлсүнбү?')){delete cats['${k}'];if(admCat==='${k}')admCat=Object.keys(cats)[0];renderCatTbl();refreshAdmCats();markDirty('cat')}">✕</button></td>
-  </tr>`).join('');
-}
-function renameC(old,nw){
-  if(old===nw||!nw.trim())return;
-  const newC={};Object.keys(cats).forEach(k=>newC[k===old?nw:k]=cats[k]);cats=newC;
-  if(admCat===old)admCat=nw;renderCatTbl();refreshAdmCats();markDirty('cat');
-}
-function addCat(){
-  const n=document.getElementById('nc_n').value.trim();
-  if(!n){alert('Ат жазыңыз');return;}
-  if(cats[n]){alert('Мындай категория бар');return;}
-  cats[n]=[];document.getElementById('nc_n').value='';renderCatTbl();refreshAdmCats();markDirty('cat');
-}
-function renderGoalTbl(){
-  document.getElementById('goalTbl').innerHTML=Object.keys(goals).map(k=>`<tr>
-    <td style="color:var(--text3);font-size:11px">${k}</td>
-    <td><input class="t-inp" value="${goals[k].label}" onchange="goals['${k}'].label=this.value;markDirty('goal')"/></td>
-    <td><input class="t-inp" value="${goals[k].note}" onchange="goals['${k}'].note=this.value;markDirty('goal')"/></td>
-    <td><button class="del-btn" onclick="if(Object.keys(goals).length>1){delete goals['${k}'];renderGoalTbl();markDirty('goal')}else alert('Жок дегенде бир максат болсун')">✕</button></td>
-  </tr>`).join('');
-}
-function addGoal(){
-  const k=document.getElementById('ng_k').value.trim().replace(/\s/g,'');
-  const l=document.getElementById('ng_l').value.trim();
-  const n=document.getElementById('ng_n').value.trim();
-  if(!k||!l)return;
-  goals[k]={label:l,note:n};['ng_k','ng_l','ng_n'].forEach(id=>document.getElementById(id).value='');
-  renderGoalTbl();markDirty('goal');
-}
-function markDirty(t){
-  if(t==='prod'||t==='cat'){document.getElementById('prodSaveBar').classList.add('show');document.getElementById('catSaveBar').classList.add('show');}
-  if(t==='goal')document.getElementById('goalSaveBar').classList.add('show');
-}
+function renderAdmProds(){document.getElementById('admProdTbl').innerHTML=(cats[admCat]||[]).map((p,i)=>`<tr><td><input class="t-inp" style="width:40px" value="${p.e}" onchange="cats['${admCat}'][${i}].e=this.value;markDirty('prod')"/></td><td><input class="t-inp" value="${p.n}" onchange="cats['${admCat}'][${i}].n=this.value;markDirty('prod')"/></td><td><input class="t-inp" type="number" value="${p.c}" onchange="cats['${admCat}'][${i}].c=+this.value;markDirty('prod')"/></td><td><input class="t-inp" type="number" value="${p.p}" onchange="cats['${admCat}'][${i}].p=+this.value;markDirty('prod')"/></td><td><input class="t-inp" type="number" value="${p.f}" onchange="cats['${admCat}'][${i}].f=+this.value;markDirty('prod')"/></td><td><input class="t-inp" type="number" value="${p.ca}" onchange="cats['${admCat}'][${i}].ca=+this.value;markDirty('prod')"/></td><td><input class="t-inp" type="number" value="${p.g||100}" onchange="cats['${admCat}'][${i}].g=+this.value;markDirty('prod')"/></td><td><button class="del-btn" onclick="cats['${admCat}'].splice(${i},1);renderAdmProds();markDirty('prod')">✕</button></td></tr>`).join('');}
+function addProd(){const e=document.getElementById('np_e').value.trim()||'🥬';const n=document.getElementById('np_n').value.trim();if(!n){alert('Аты жазылган жок');return;}cats[admCat].push({e,n,c:+document.getElementById('np_c').value||0,p:+document.getElementById('np_p').value||0,f:+document.getElementById('np_f').value||0,ca:+document.getElementById('np_ca').value||0,g:+document.getElementById('np_g').value||100});renderAdmProds();markDirty('prod');['np_e','np_n','np_c','np_p','np_f','np_ca','np_g'].forEach(id=>document.getElementById(id).value='');}
+function renderCatTbl(){document.getElementById('catTbl').innerHTML=Object.keys(cats).map(k=>`<tr><td><input class="t-inp" value="${k}" onblur="renameC('${k}',this.value)"/></td><td style="color:var(--text3)">${(cats[k]||[]).length}</td><td><button class="del-btn" onclick="if(confirm('Өчүрүлсүнбү?')){delete cats['${k}'];if(admCat==='${k}')admCat=Object.keys(cats)[0];renderCatTbl();refreshAdmCats();markDirty('cat')}">✕</button></td></tr>`).join('');}
+function renameC(old,nw){if(old===nw||!nw.trim())return;const newC={};Object.keys(cats).forEach(k=>newC[k===old?nw:k]=cats[k]);cats=newC;if(admCat===old)admCat=nw;renderCatTbl();refreshAdmCats();markDirty('cat');}
+function addCat(){const n=document.getElementById('nc_n').value.trim();if(!n)return;if(cats[n]){alert('Мындай категория бар');return;}cats[n]=[];document.getElementById('nc_n').value='';renderCatTbl();refreshAdmCats();markDirty('cat');}
+function renderGoalTbl(){document.getElementById('goalTbl').innerHTML=Object.keys(goals).map(k=>`<tr><td style="color:var(--text3);font-size:11px">${k}</td><td><input class="t-inp" value="${goals[k].label}" onchange="goals['${k}'].label=this.value;markDirty('goal')"/></td><td><input class="t-inp" value="${goals[k].note}" onchange="goals['${k}'].note=this.value;markDirty('goal')"/></td><td><button class="del-btn" onclick="if(Object.keys(goals).length>1){delete goals['${k}'];renderGoalTbl();markDirty('goal')}">✕</button></td></tr>`).join('');}
+function addGoal(){const k=document.getElementById('ng_k').value.trim().replace(/\s/g,'');const l=document.getElementById('ng_l').value.trim();const n=document.getElementById('ng_n').value.trim();if(!k||!l)return;goals[k]={label:l,note:n};['ng_k','ng_l','ng_n'].forEach(id=>document.getElementById(id).value='');renderGoalTbl();markDirty('goal');}
+function markDirty(t){if(t==='prod'||t==='cat'){document.getElementById('prodSaveBar').classList.add('show');document.getElementById('catSaveBar').classList.add('show');}if(t==='goal')document.getElementById('goalSaveBar').classList.add('show');}
 function saveProds(){saveCats();renderCats();renderProducts();flashMsg('✓ Продуктулар сакталды!');}
 function saveGoalsData(){saveGoalsStorage();renderGoals();flashMsg('✓ Максаттар сакталды!');}
 
-// ══ TABS ══
-function switchTab(btn,id){
-  document.querySelectorAll('.app-tab').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('tab-'+id).classList.add('active');
-  if(id==='favourites')renderFavs();
-  if(id==='tips')renderTips();
-}
-
-// ══ SEARCH ══
-function heroSearchFn(val){
-  searchTerm=val.toLowerCase();
-  if(val){
-    // find cat with match
-    for(const [cat,prods] of Object.entries(cats)){
-      if(prods.some(p=>p.n.toLowerCase().includes(searchTerm))){
-        activeCat=cat;break;
-      }
-    }
-  }
-  renderCats();renderProducts();
-  document.getElementById('prodSearch').value=val;
-  // scroll to builder
-  document.getElementById('tab-builder').scrollIntoView({behavior:'smooth'});
-}
+function switchTab(btn,id){document.querySelectorAll('.app-tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.getElementById('tab-'+id).classList.add('active');if(id==='favourites')renderFavs();if(id==='tips')renderTips();}
+function heroSearchFn(val){searchTerm=val.toLowerCase();if(val){for(const[cat,prods]of Object.entries(cats)){if(prods.some(p=>p.n.toLowerCase().includes(searchTerm))){activeCat=cat;break;}}}renderCats();renderProducts();document.getElementById('prodSearch').value=val;}
 function filterProds(val){searchTerm=val.toLowerCase();renderProducts();}
-
-// ══ RENDER CATS ══
-function renderCats(){
-  document.getElementById('catTabs').innerHTML=Object.keys(cats).map(k=>{
-    const cnt=searchTerm?(cats[k]||[]).filter(p=>p.n.toLowerCase().includes(searchTerm)).length:(cats[k]||[]).length;
-    if(searchTerm&&cnt===0)return'';
-    return `<button class="cat-btn ${k===activeCat?'active':''}" onclick="setCat(\`${k}\`)">${k}${cnt>0?`<span class='cnt'>(${cnt})</span>`:''}</button>`;
-  }).join('');
-}
+function renderCats(){document.getElementById('catTabs').innerHTML=Object.keys(cats).map(k=>{const cnt=searchTerm?(cats[k]||[]).filter(p=>p.n.toLowerCase().includes(searchTerm)).length:(cats[k]||[]).length;if(searchTerm&&cnt===0)return'';return`<button class="cat-btn ${k===activeCat?'active':''}" onclick="setCat(\`${k}\`)">${k}${cnt>0?`<span class='cnt'>(${cnt})</span>`:''}</button>`;}).join('');}
 function setCat(c){activeCat=c;renderCats();renderProducts();}
-
-// ══ RENDER PRODUCTS ══
-function renderProducts(){
-  const prods=(cats[activeCat]||[]).filter(p=>!searchTerm||p.n.toLowerCase().includes(searchTerm));
-  document.getElementById('productsGrid').innerHTML=prods.map(p=>{
-    const s=!!selected[p.n];
-    return `<div class="prod ${s?'sel':''}" onclick="toggleProd(\`${activeCat}\`,\`${p.n}\`)">
-      <div class="prod-chk">${s?'✓':''}</div>
-      <span style="font-size:13px">${p.e}</span>
-      <span style="flex:1">${p.n}</span>
-      ${!s?`<span class="prod-kcal">${p.c}кк</span>`:''}
-    </div>`;
-  }).join('') || '<div style="padding:1rem 1.25rem;font-size:13px;color:var(--text3)">Табылган жок</div>';
-}
-
-function toggleProd(cat,name){
-  const p=(cats[cat]||[]).find(x=>x.n===name);if(!p)return;
-  if(selected[name])delete selected[name];
-  else selected[name]={...p,grams:p.g||100};
-  renderProducts();renderSelected();
-}
-
-// ══ RENDER SELECTED ══
-function renderSelected(){
-  const keys=Object.keys(selected);
-  const list=document.getElementById('selectedList');
-  const genBtn=document.getElementById('genBtn');
-  const genNote=document.getElementById('genNote');
-  const gramNote=document.getElementById('gramNote');
-  const rings=document.getElementById('macroRings');
-  const shop=document.getElementById('shopSection');
-  document.getElementById('selCount').textContent=keys.length?keys.length+' продукт':'';
-
-  if(!keys.length){
-    list.innerHTML='<div class="empty-hint"><span class="big">🥗</span>Сол жактан продукт тандаңыз<br/><small style="opacity:.65;font-size:11px">AI туура граммды өзү белгилейт</small></div>';
-    rings.style.display='none';shop.classList.remove('show');
-    gramNote.style.display='none';genBtn.disabled=true;genNote.textContent='';return;
-  }
-  genBtn.disabled=false;gramNote.style.display='block';rings.style.display='flex';shop.classList.add('show');
-  genNote.innerHTML=!getKey()?'⚠️ Ключ керек — <span style="color:var(--green);cursor:pointer;text-decoration:underline" onclick="openApiModal()">киргизүү</span>':'';
-
-  list.innerHTML='<div style="padding:.15rem 0">'+keys.map(name=>{
-    const p=selected[name];
-    const icon=p.grams<=5?'🧂':p.grams<=20?'🥄':p.grams<=60?'🍴':p.grams<=150?'🫙':'🍽';
-    return `<div class="sel-row">
-      <span class="sel-name">${p.e} ${name}</span>
-      <div style="display:flex;align-items:center;gap:4px">
-        <input class="gram-inp" type="number" value="${p.grams}" min="1" max="2000" step="1" onchange="updateGrams(\`${name}\`,this.value)"/>
-        <span class="gram-unit">г</span>
-        <span class="gram-icon">${icon}</span>
-        <button class="rm-btn" onclick="removeProd(\`${name}\`)" title="Өчүрүү">×</button>
-      </div>
-    </div>`;
-  }).join('')+'</div>';
-
-  calcMacros();
-  renderShopList(keys);
-}
-
-function renderShopList(keys){
-  document.getElementById('shopList').innerHTML=keys.map(name=>{
-    const p=selected[name];
-    const id='shop_'+name.replace(/\s/g,'_');
-    return `<label class="shop-item" id="${id}">
-      <input type="checkbox" onchange="this.parentElement.classList.toggle('checked',this.checked)"/>
-      ${p.e} ${name} — <strong>${p.grams}г</strong>
-    </label>`;
-  }).join('');
-}
-
-function copyShopList(){
-  const items=Object.entries(selected).map(([n,p])=>`${p.e} ${n} — ${p.grams}г`).join('\n');
-  navigator.clipboard.writeText('🛒 Соода тизмеси:\n'+items).then(()=>flashMsg('✓ Тизме көчүрүлдү!'));
-}
-
+function renderProducts(){const prods=(cats[activeCat]||[]).filter(p=>!searchTerm||p.n.toLowerCase().includes(searchTerm));document.getElementById('productsGrid').innerHTML=prods.map(p=>{const s=!!selected[p.n];return`<div class="prod ${s?'sel':''}" onclick="toggleProd(\`${activeCat}\`,\`${p.n}\`)"><div class="prod-chk">${s?'✓':''}</div><span style="font-size:13px">${p.e}</span><span style="flex:1">${p.n}</span>${!s?`<span class="prod-kcal">${p.c}кк</span>`:''}</div>`;}).join('')||'<div style="padding:1rem 1.25rem;font-size:13px;color:var(--text3)">Табылган жок</div>';}
+function toggleProd(cat,name){const p=(cats[cat]||[]).find(x=>x.n===name);if(!p)return;if(selected[name])delete selected[name];else selected[name]={...p,grams:p.g||100};renderProducts();renderSelected();}
+function renderSelected(){const keys=Object.keys(selected);const list=document.getElementById('selectedList');const genBtn=document.getElementById('genBtn');const genNote=document.getElementById('genNote');const gramNote=document.getElementById('gramNote');const rings=document.getElementById('macroRings');const shop=document.getElementById('shopSection');document.getElementById('selCount').textContent=keys.length?keys.length+' продукт':'';if(!keys.length){list.innerHTML='<div class="empty-hint"><span class="big">🥗</span>Сол жактан продукт тандаңыз</div>';rings.style.display='none';shop.classList.remove('show');gramNote.style.display='none';genBtn.disabled=true;genNote.textContent='';return;}genBtn.disabled=false;gramNote.style.display='block';rings.style.display='flex';shop.classList.add('show');genNote.innerHTML=!getKey()?'⚠️ Бекер ключ керек — <span style="color:var(--purple);cursor:pointer;text-decoration:underline" onclick="openApiModal()">алуу (бекер)</span>':'';list.innerHTML='<div style="padding:.15rem 0">'+keys.map(name=>{const p=selected[name];const icon=p.grams<=5?'🧂':p.grams<=20?'🥄':p.grams<=60?'🍴':p.grams<=150?'🫙':'🍽';return`<div class="sel-row"><span class="sel-name">${p.e} ${name}</span><div style="display:flex;align-items:center;gap:4px"><input class="gram-inp" type="number" value="${p.grams}" min="1" max="2000" step="1" onchange="updateGrams(\`${name}\`,this.value)"/><span class="gram-unit">г</span><span>${icon}</span><button class="rm-btn" onclick="removeProd(\`${name}\`)">×</button></div></div>`;}).join('')+'</div>';calcMacros();renderShopList(keys);}
+function renderShopList(keys){document.getElementById('shopList').innerHTML=keys.map(name=>{const p=selected[name];return`<label class="shop-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('checked',this.checked)" style="accent-color:var(--green)"/> ${p.e} ${name} — <strong>${p.grams}г</strong></label>`;}).join('');}
+function copyShopList(){const items=Object.entries(selected).map(([n,p])=>`${p.e} ${n} — ${p.grams}г`).join('\n');navigator.clipboard.writeText('🛒 Соода тизмеси:\n'+items).then(()=>flashMsg('✓ Тизме көчүрүлдү!'));}
 function updateGrams(name,val){selected[name].grams=Math.max(1,parseInt(val)||1);calcMacros();}
 function removeProd(name){delete selected[name];renderProducts();renderSelected();}
+function changeServings(d){servings=Math.max(1,Math.min(12,servings+d));document.getElementById('servVal').textContent=servings;}
+function calcMacros(){let cal=0,prot=0,fat=0,carb=0;Object.values(selected).forEach(p=>{const r=p.grams/100;cal+=p.c*r;prot+=p.p*r;fat+=p.f*r;carb+=p.ca*r;});cal=Math.round(cal);prot=Math.round(prot);fat=Math.round(fat);carb=Math.round(carb);const pct=v=>Math.min(v/2000,1)*138;const pm=v=>Math.min(v/150,1)*138;document.getElementById('rvCal').textContent=cal;document.getElementById('rvProt').textContent=prot+'г';document.getElementById('rvFat').textContent=fat+'г';document.getElementById('rvCarb').textContent=carb+'г';document.getElementById('rCal').setAttribute('stroke-dasharray',`${pct(cal)} 138`);document.getElementById('rProt').setAttribute('stroke-dasharray',`${pm(prot)} 138`);document.getElementById('rFat').setAttribute('stroke-dasharray',`${pm(fat)} 138`);document.getElementById('rCarb').setAttribute('stroke-dasharray',`${pm(carb)} 138`);}
+function renderGoals(){document.getElementById('goalRow').innerHTML=Object.keys(goals).map(k=>`<button class="goal-btn ${k===activeGoal?'active':''}" onclick="setGoal(this,'${k}')">${goals[k].label}</button>`).join('');}
+function setGoal(btn,g){activeGoal=g;document.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
 
-// ══ SERVINGS ══
-function changeServings(d){
-  servings=Math.max(1,Math.min(12,servings+d));
-  document.getElementById('servVal').textContent=servings;
-}
-
-// ══ CALC MACROS ══
-function calcMacros(){
-  let cal=0,prot=0,fat=0,carb=0;
-  Object.values(selected).forEach(p=>{const r=p.grams/100;cal+=p.c*r;prot+=p.p*r;fat+=p.f*r;carb+=p.ca*r;});
-  cal=Math.round(cal);prot=Math.round(prot);fat=Math.round(fat);carb=Math.round(carb);
-
-  // rings
-  const maxCal=2000,maxMacro=150;
-  const pct=v=>Math.min(v/maxCal,1)*138;
-  const pm=v=>Math.min(v/maxMacro,1)*138;
-  document.getElementById('rvCal').textContent=cal;
-  document.getElementById('rvProt').textContent=prot+'г';
-  document.getElementById('rvFat').textContent=fat+'г';
-  document.getElementById('rvCarb').textContent=carb+'г';
-  document.getElementById('rCal').setAttribute('stroke-dasharray',`${pct(cal)} 138`);
-  document.getElementById('rProt').setAttribute('stroke-dasharray',`${pm(prot)} 138`);
-  document.getElementById('rFat').setAttribute('stroke-dasharray',`${pm(fat)} 138`);
-  document.getElementById('rCarb').setAttribute('stroke-dasharray',`${pm(carb)} 138`);
-}
-
-// ══ GOALS ══
-function renderGoals(){
-  document.getElementById('goalRow').innerHTML=Object.keys(goals).map(k=>
-    `<button class="goal-btn ${k===activeGoal?'active':''}" onclick="setGoal(this,'${k}')">${goals[k].label}</button>`
-  ).join('');
-}
-function setGoal(btn,g){
-  activeGoal=g;
-  document.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-// ══ GENERATE ══
+// ══ GROQ API ══
 async function generateRecipe(){
   const apiKey=getKey();
   if(!apiKey){openApiModal();return;}
   trackRecipe(activeGoal);
-
   const section=document.getElementById('recipeSection');
-  section.innerHTML=`<div class="recipe-card"><div class="loading">
-    <div class="spinner"></div>
-    <div class="loading-msg">AI рецепт жасап жатат...</div>
-    <div class="loading-sub">Нутрициологиялык принциптерге ылайык ${servings} порция үчүн</div>
-  </div></div>`;
+  section.innerHTML=`<div class="recipe-card"><div class="loading"><div class="spinner"></div><div class="loading-msg">🌐 AI рецепт жасап жатат...</div><div class="loading-sub">${servings} порция үчүн нутрициологиялык рецепт</div></div></div>`;
   section.scrollIntoView({behavior:'smooth',block:'start'});
-
   const prodList=Object.entries(selected).map(([n,p])=>`${n} — ${p.grams}г`).join(', ');
   const goal=goals[activeGoal]||goals[Object.keys(goals)[0]];
-
   const prompt=`Сен кыргыз тилиндеги профессионал нутрициолог жана аш бышыруучу болосуң.
 Берилген жергиликтүү продуктулардан ГАНА саламаттыкка пайдалуу рецепт жаз.
-
 Продуктулар (болжолдуу): ${prodList}
 Максат: ${goal.label} — ${goal.note}
 Порция: ${servings} адам үчүн
-
-МААНИЛҮҮ: Туза макс 3г, май макс 20мл. Туура пропорцияны өзүң белгиле.
-
+Туза макс 3г, май макс 20мл. Туура пропорцияны өзүң белгиле.
 Жооп КЫРГЫЗ тилинде, ЖАЛАҢ JSON:
-{"name":"аты","description":"1-2 сүйлөм","difficulty":"Оңой",
-"prepTime":"15 мин","cookTime":"30 мин","servings":${servings},
-"calories":350,"protein":25,"fat":10,"carbs":40,
-"ingredients":[{"name":"продукт","amount":"200г","note":"кыскача"}],
-"steps":[{"num":1,"text":"деталдуу кадам","time":"5 мин"}],
-"nutritionTip":"нутрициологиялык кеңеш","healthBenefit":"пайдасы",
-"tags":["тез","диета"]}
+{"name":"аты","description":"1-2 сүйлөм","difficulty":"Оңой","prepTime":"15 мин","cookTime":"30 мин","servings":${servings},"calories":350,"protein":25,"fat":10,"carbs":40,"ingredients":[{"name":"продукт","amount":"200г","note":"кыскача"}],"steps":[{"num":1,"text":"деталдуу кадам","time":"5 мин"}],"nutritionTip":"нутрициологиялык кеңеш","healthBenefit":"пайдасы","tags":["тез","диета"]}
 Кадамдар 4-7 болсун.`;
 
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    const resp=await fetch('https://api.groq.com/openai/v1/chat/completions',{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1600,messages:[{role:'user',content:prompt}]})
+      headers:{'Content-Type':'application/json','Authorization':`Bearer ${apiKey}`},
+      body:JSON.stringify({
+        model:'llama-3.3-70b-versatile',
+        messages:[{role:'user',content:prompt}],
+        temperature:0.7,max_tokens:1500,
+        response_format:{type:'json_object'}
+      })
     });
     if(!resp.ok){const e=await resp.json();throw new Error(e.error?.message||`HTTP ${resp.status}`);}
     const data=await resp.json();
-    const raw=data.content[0].text.replace(/```json|```/g,'').trim();
+    const raw=data.choices?.[0]?.message?.content||'{}';
     currentRecipe=JSON.parse(raw);
     renderRecipe(currentRecipe);
   }catch(e){
@@ -1262,28 +671,14 @@ async function generateRecipe(){
   }
 }
 
-// ══ RENDER RECIPE ══
 function renderRecipe(r){
-  const steps=(r.steps||[]).map(s=>`<div class="step">
-    <div class="step-num">${s.num}</div>
-    <div class="step-body">
-      <div class="step-text">${s.text}</div>
-      ${s.time?`<div class="step-time">⏱ ${s.time}</div>`:''}
-    </div>
-  </div>`).join('');
-
+  const steps=(r.steps||[]).map(s=>`<div class="step"><div class="step-num">${s.num}</div><div><div class="step-text">${s.text}</div>${s.time?`<div class="step-time">⏱ ${s.time}</div>`:''}</div></div>`).join('');
   const ingrs=(r.ingredients||[]).map(i=>`<div class="ingr-pill">${i.name}<span>${i.amount}${i.note?' · '+i.note:''}</span></div>`).join('');
-
-  const tags=(r.tags||[]).map(t=>`<span style="font-size:11px;padding:3px 10px;border-radius:15px;background:var(--green-light);color:var(--green);font-weight:500">${t}</span>`).join('');
-
-  // macro bar
+  const tags=(r.tags||[]).map(t=>`<span style="font-size:11px;padding:3px 10px;border-radius:15px;background:rgba(255,255,255,.15);color:#fff;font-weight:500">${t}</span>`).join('');
   const tot=(r.protein||0)+(r.fat||0)+(r.carbs||0)||1;
-  const pPct=((r.protein||0)/tot*100).toFixed(0);
-  const fPct=((r.fat||0)/tot*100).toFixed(0);
-  const cPct=((r.carbs||0)/tot*100).toFixed(0);
-
+  const pPct=((r.protein||0)/tot*100).toFixed(0);const fPct=((r.fat||0)/tot*100).toFixed(0);const cPct=((r.carbs||0)/tot*100).toFixed(0);
   document.getElementById('recipeSection').innerHTML=`
-  <div style="margin-bottom:.875rem;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text3)">Рецепт</div>
+  <div style="margin-bottom:.875rem;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text3)">🌐 AI жасаган рецепт</div>
   <div class="recipe-card">
     <div class="recipe-hero">
       <div class="recipe-diff">${r.difficulty||'Орточо'}</div>
@@ -1305,22 +700,14 @@ function renderRecipe(r){
     <div class="recipe-body">
       ${r.calories?`
       <div class="section-lbl">Пайдалуу заттар (1 порция)</div>
-      <div style="display:flex;gap:10px;margin-bottom:.875rem;flex-wrap:wrap">
-        <div style="background:var(--green-light);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-size:18px;font-weight:700;color:var(--green)">${r.calories}</div><div style="font-size:10px;color:var(--green);opacity:.75;text-transform:uppercase">ккал</div></div>
-        <div style="background:#e8f5ef;border-radius:8px;padding:8px 14px;text-align:center"><div style="font-size:18px;font-weight:700;color:#2D9B6A">${r.protein||0}г</div><div style="font-size:10px;color:#2D9B6A;opacity:.75;text-transform:uppercase">белок</div></div>
-        <div style="background:#fff4e8;border-radius:8px;padding:8px 14px;text-align:center"><div style="font-size:18px;font-weight:700;color:#D4622A">${r.fat||0}г</div><div style="font-size:10px;color:#D4622A;opacity:.75;text-transform:uppercase">май</div></div>
-        <div style="background:#e8f0fb;border-radius:8px;padding:8px 14px;text-align:center"><div style="font-size:18px;font-weight:700;color:var(--blue)">${r.carbs||0}г</div><div style="font-size:10px;color:var(--blue);opacity:.75;text-transform:uppercase">углевод</div></div>
+      <div class="nutri-boxes">
+        <div class="nutri-box" style="background:var(--green-light)"><div class="nutri-box-val" style="color:var(--green)">${r.calories}</div><div class="nutri-box-lbl" style="color:var(--green)">ккал</div></div>
+        <div class="nutri-box" style="background:#e8f5ef"><div class="nutri-box-val" style="color:#2D9B6A">${r.protein||0}г</div><div class="nutri-box-lbl" style="color:#2D9B6A">белок</div></div>
+        <div class="nutri-box" style="background:#fff4e8"><div class="nutri-box-val" style="color:#D4622A">${r.fat||0}г</div><div class="nutri-box-lbl" style="color:#D4622A">май</div></div>
+        <div class="nutri-box" style="background:var(--blue-light)"><div class="nutri-box-val" style="color:var(--blue)">${r.carbs||0}г</div><div class="nutri-box-lbl" style="color:var(--blue)">углевод</div></div>
       </div>
-      <div class="recipe-nutri-bar" style="margin-bottom:.5rem">
-        <div class="nutri-seg" data-type="prot" style="width:${pPct}%" title="Белок ${pPct}%"></div>
-        <div class="nutri-seg" data-type="fat" style="width:${fPct}%" title="Май ${fPct}%"></div>
-        <div class="nutri-seg" data-type="carb" style="width:${cPct}%" title="Углевод ${cPct}%"></div>
-      </div>
-      <div class="nutri-legend" style="margin-bottom:1.25rem">
-        <div class="nutri-leg-item"><div class="nutri-dot" style="background:#52B788"></div>Белок ${pPct}%</div>
-        <div class="nutri-leg-item"><div class="nutri-dot" style="background:#F4A261"></div>Май ${fPct}%</div>
-        <div class="nutri-leg-item"><div class="nutri-dot" style="background:#4A9CE8"></div>Углевод ${cPct}%</div>
-      </div>`:''}
+      <div class="nutri-bar" style="margin-bottom:.5rem"><div style="width:${pPct}%;height:100%;background:#52B788"></div><div style="width:${fPct}%;height:100%;background:#F4A261"></div><div style="width:${cPct}%;height:100%;background:#4A9CE8"></div></div>
+      <div class="nutri-legend"><div class="nutri-leg"><div class="nutri-dot" style="background:#52B788"></div>Белок ${pPct}%</div><div class="nutri-leg"><div class="nutri-dot" style="background:#F4A261"></div>Май ${fPct}%</div><div class="nutri-leg"><div class="nutri-dot" style="background:#4A9CE8"></div>Углевод ${cPct}%</div></div>`:''}
       ${ingrs?`<div class="section-lbl">Ингредиенттер (AI белгилеген пропорция)</div><div class="ingr-grid">${ingrs}</div>`:''}
       <div class="section-lbl">Пиширишүү ыкмасы</div>
       <div class="steps-list">${steps}</div>
@@ -1330,100 +717,16 @@ function renderRecipe(r){
   document.getElementById('recipeSection').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-// ══ RECIPE ACTIONS ══
-function saveToFavs(){
-  if(!currentRecipe){return;}
-  const favs=loadFavs();
-  const item={
-    id:Date.now(),
-    name:currentRecipe.name,
-    desc:currentRecipe.description,
-    tags:currentRecipe.tags||[],
-    calories:currentRecipe.calories,
-    goal:activeGoal,
-    goalLabel:(goals[activeGoal]||{}).label||'',
-    ingredients:Object.keys(selected),
-    saved:new Date().toISOString(),
-    recipe:currentRecipe,
-  };
-  favs.unshift(item);
-  saveFavs(favs);
-  flashMsg('⭐ Рецепт сакталды!');
-}
+function saveToFavs(){if(!currentRecipe)return;const favs=loadFavs();favs.unshift({id:Date.now(),name:currentRecipe.name,desc:currentRecipe.description,tags:currentRecipe.tags||[],calories:currentRecipe.calories,goal:activeGoal,goalLabel:(goals[activeGoal]||{}).label||'',ingredients:Object.keys(selected),saved:new Date().toISOString(),recipe:currentRecipe});saveFavs(favs);flashMsg('⭐ Рецепт сакталды!');}
+function printRecipe(){if(!currentRecipe)return;const r=currentRecipe;const w=window.open('','_blank');w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${r.name}</title><style>body{font-family:sans-serif;max-width:700px;margin:2rem auto;padding:1rem;color:#1A1A18}.hero{background:#2D6A4F;color:#fff;padding:1.5rem;border-radius:12px;margin-bottom:1.5rem}.name{font-size:24px;font-weight:700;margin-bottom:.5rem}.desc{opacity:.8;font-size:14px}.meta{display:flex;gap:1rem;margin-top:.75rem;font-size:13px;opacity:.75}.lbl{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#9A9590;margin-bottom:.75rem;font-weight:600;margin-top:1.25rem}.step{display:flex;gap:.875rem;margin-bottom:.875rem}.sn{width:26px;height:26px;border-radius:50%;background:#D8EDDF;color:#2D6A4F;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px}.ig{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}.ip{background:#F0EDE6;border-radius:7px;padding:6px 11px;font-size:12px}.tip{background:#FDEBD5;border-radius:8px;padding:.9rem;font-size:13px;color:#7a3010}@media print{.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style></head><body><div class="hero"><div class="name">${r.name}</div><div class="desc">${r.description}</div><div class="meta"><span>🍽 ${r.servings} порция</span><span>⏱ ${r.prepTime||''}</span><span>🔥 ${r.cookTime||''}</span>${r.calories?`<span>📊 ${r.calories} ккал</span>`:''}</div></div>${(r.ingredients||[]).length?`<div class="lbl">Ингредиенттер</div><div class="ig">${(r.ingredients||[]).map(i=>`<div class="ip">${i.name} — ${i.amount}</div>`).join('')}</div>`:''}<div class="lbl">Жасоо ыкмасы</div>${(r.steps||[]).map(s=>`<div class="step"><div class="sn">${s.num}</div><div><div style="font-size:14px;line-height:1.65">${s.text}</div>${s.time?`<div style="font-size:11px;color:#9A9590;margin-top:3px">⏱ ${s.time}</div>`:''}</div></div>`).join('')}${r.nutritionTip?`<div class="tip"><strong>🌿 Нутрициолог кеңеши</strong><br/>${r.nutritionTip}</div>`:''}</body></html>`);w.document.close();setTimeout(()=>w.print(),500);}
+function copyRecipe(){if(!currentRecipe)return;const r=currentRecipe;let txt=`🍳 ${r.name}\n${r.description}\n\n🍽 ${r.servings} порция | ⏱ ${r.prepTime||''} | 🔥 ${r.cookTime||''}\n\n`;if(r.calories)txt+=`📊 ${r.calories}ккал | Б:${r.protein||0}г М:${r.fat||0}г У:${r.carbs||0}г\n\n`;txt+=`🛒 Ингредиенттер:\n${(r.ingredients||[]).map(i=>`• ${i.name} — ${i.amount}`).join('\n')}\n\n`;txt+=`👨‍🍳 Жасоо ыкмасы:\n${(r.steps||[]).map(s=>`${s.num}. ${s.text}`).join('\n')}\n\n`;if(r.nutritionTip)txt+=`🌿 ${r.nutritionTip}`;navigator.clipboard.writeText(txt).then(()=>flashMsg('📋 Рецепт көчүрүлдү!'));}
 
-function printRecipe(){
-  const content=document.getElementById('recipeSection').innerHTML;
-  const w=window.open('','_blank');
-  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${currentRecipe?.name||'Рецепт'}</title><style>body{font-family:sans-serif;max-width:700px;margin:2rem auto;padding:1rem;color:#1A1A18}.recipe-hero{background:#2D6A4F;color:#fff;padding:1.5rem;border-radius:12px;margin-bottom:1.5rem}.recipe-name{font-size:24px;font-weight:700;margin-bottom:.5rem}.recipe-desc{opacity:.8}.recipe-meta{display:flex;gap:1rem;margin-top:.75rem;font-size:13px;opacity:.75}.recipe-body{padding:0}.section-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#9A9590;margin-bottom:.75rem;font-weight:600}.step{display:flex;gap:.875rem;margin-bottom:.875rem}.step-num{width:26px;height:26px;border-radius:50%;background:#D8EDDF;color:#2D6A4F;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px}.step-text{font-size:14px;line-height:1.65}.ingr-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem}.ingr-pill{background:#F0EDE6;border-radius:7px;padding:6px 11px;font-size:12px}.ingr-pill span{display:block;font-size:11px;color:#9A9590;margin-top:1px}.nutri-tip{background:#FDEBD5;border-radius:8px;padding:.9rem 1.2rem;font-size:13px;color:#7a3010;margin-top:1rem}@media print{.recipe-hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style></head><body>${content}</body></html>`);
-  w.document.close();setTimeout(()=>w.print(),500);
-}
+function renderFavs(){const favs=loadFavs();const grid=document.getElementById('favsGrid');if(!favs.length){grid.innerHTML='<div class="fav-empty"><span class="big">⭐</span>Сакталган рецепттер жок<br/><small>Рецепт жасап, «Сактоо» баскычын басыңыз</small></div>';return;}grid.innerHTML=favs.map(f=>`<div class="fav-card" onclick="loadFav(${f.id})"><div class="fav-name">${f.name}</div><div class="fav-meta">${f.goalLabel||''} · ${new Date(f.saved).toLocaleDateString('ru-RU')}${f.calories?' · '+f.calories+' ккал':''}</div><div class="fav-tags">${(f.tags||[]).map(t=>`<span class="fav-tag">${t}</span>`).join('')}</div><div style="font-size:12px;color:var(--text3);margin-bottom:.75rem">${(f.ingredients||[]).slice(0,3).join(', ')}${(f.ingredients||[]).length>3?'...':''}</div><div class="fav-footer"><button class="fav-del" onclick="event.stopPropagation();delFav(${f.id})">🗑 Өчүрүү</button><button class="fav-open">Ачуу →</button></div></div>`).join('');}
+function loadFav(id){const fav=loadFavs().find(f=>f.id===id);if(!fav)return;currentRecipe=fav.recipe;document.querySelectorAll('.app-tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));document.querySelector('.app-tab').classList.add('active');document.getElementById('tab-builder').classList.add('active');renderRecipe(fav.recipe);flashMsg(`⭐ «${fav.name}» жүктөлдү`);}
+function delFav(id){const favs=loadFavs().filter(f=>f.id!==id);saveFavs(favs);renderFavs();flashMsg('🗑 Рецепт өчүрүлдү');}
+function renderTips(){document.getElementById('tipsGrid').innerHTML=TIPS.map(t=>`<div class="tip-card"><span class="tip-icon">${t.icon}</span><div class="tip-title">${t.title}</div><div class="tip-text">${t.text}</div></div>`).join('');}
 
-function copyRecipe(){
-  if(!currentRecipe)return;
-  const r=currentRecipe;
-  let txt=`🍳 ${r.name}\n${r.description}\n\n`;
-  txt+=`🍽 ${r.servings} порция | ⏱ ${r.prepTime||''} | 🔥 ${r.cookTime||''}\n\n`;
-  if(r.calories)txt+=`📊 ${r.calories}ккал | Б:${r.protein||0}г М:${r.fat||0}г У:${r.carbs||0}г\n\n`;
-  txt+=`🛒 Ингредиенттер:\n${(r.ingredients||[]).map(i=>`• ${i.name} — ${i.amount}`).join('\n')}\n\n`;
-  txt+=`👨‍🍳 Жасоо ыкмасы:\n${(r.steps||[]).map(s=>`${s.num}. ${s.text}`).join('\n')}\n\n`;
-  if(r.nutritionTip)txt+=`🌿 Нутрициолог кеңеши:\n${r.nutritionTip}`;
-  navigator.clipboard.writeText(txt).then(()=>flashMsg('📋 Рецепт көчүрүлдү!'));
-}
-
-// ══ FAVOURITES ══
-function renderFavs(){
-  const favs=loadFavs();
-  const grid=document.getElementById('favsGrid');
-  if(!favs.length){
-    grid.innerHTML='<div class="fav-empty" style="grid-column:1/-1"><span class="big">⭐</span>Сакталган рецепттер жок<br/><small style="font-size:12px;opacity:.7">Рецепт жасап, «Сактоо» баскычын басыңыз</small></div>';
-    return;
-  }
-  grid.innerHTML=favs.map(f=>`<div class="fav-card" onclick="loadFav(${f.id})">
-    <div class="fav-name">${f.name}</div>
-    <div class="fav-meta">${f.goalLabel||''} · ${new Date(f.saved).toLocaleDateString('ru-RU')}${f.calories?' · '+f.calories+' ккал':''}</div>
-    <div class="fav-tags">${(f.tags||[]).map(t=>`<span class="fav-tag">${t}</span>`).join('')}</div>
-    <div style="font-size:12px;color:var(--text3);margin-bottom:.75rem">${(f.ingredients||[]).slice(0,3).join(', ')}${(f.ingredients||[]).length>3?'...':''}</div>
-    <div class="fav-footer">
-      <button class="fav-del" onclick="event.stopPropagation();delFav(${f.id})" title="Өчүрүү">🗑 Өчүрүү</button>
-      <button class="fav-open">Ачуу →</button>
-    </div>
-  </div>`).join('');
-}
-
-function loadFav(id){
-  const favs=loadFavs();
-  const fav=favs.find(f=>f.id===id);
-  if(!fav)return;
-  currentRecipe=fav.recipe;
-  // switch to builder tab
-  document.querySelector('.app-tab.active').classList.remove('active');
-  document.querySelector('.app-tab').classList.add('active');
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  document.getElementById('tab-builder').classList.add('active');
-  renderRecipe(fav.recipe);
-  flashMsg(`⭐ «${fav.name}» жүктөлдү`);
-}
-
-function delFav(id){
-  const favs=loadFavs().filter(f=>f.id!==id);
-  saveFavs(favs);renderFavs();flashMsg('🗑 Рецепт өчүрүлдү');
-}
-
-// ══ TIPS ══
-function renderTips(){
-  document.getElementById('tipsGrid').innerHTML=TIPS.map(t=>`<div class="tip-card">
-    <span class="tip-icon">${t.icon}</span>
-    <div class="tip-title">${t.title||t.name||''}</div>
-    <div class="tip-text">${t.text}</div>
-  </div>`).join('');
-}
-
-// ══ INIT ══
-trackVisit();
-updateTopBar();
-renderCats();
-renderProducts();
-renderGoals();
+trackVisit();updateTopBar();renderCats();renderProducts();renderGoals();
 if(!getKey())openApiModal();
 </script>
 </body>
